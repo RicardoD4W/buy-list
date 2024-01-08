@@ -1,7 +1,45 @@
-/* :root {
+:root {
+  font-family: "Onest", system-ui, sans-serif;
+}
 
-} */
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/OnestLight1602-hint.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/OnestRegular1602-hint.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/OnestMedium1602-hint.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/OnestBold1602-hint.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Onest";
+  src: url("/fonts/OnestExtraBold1602-hint.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
