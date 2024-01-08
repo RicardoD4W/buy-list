@@ -1,0 +1,68 @@
+import { type AvalibeColorsTheme } from "../types/store";
+
+export const paletteColor: AvalibeColorsTheme = {
+  Azul: {
+    HeaderColor: "#4488EE",
+    BackgroundColor: "#88D5E2",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#0000FF",
+    SecondaryIconColor: "#8B0000",
+  },
+  Cyan: {
+    HeaderColor: "#0BC5EA",
+    BackgroundColor: "#9DECF9",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#00FFFF",
+    SecondaryIconColor: "#8B0000",
+  },
+  Naranja: {
+    HeaderColor: "#BE8500",
+    BackgroundColor: "#FFB545",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#FFA500",
+    SecondaryIconColor: "#8B0000",
+  },
+  Rosa: {
+    HeaderColor: "#FC6998",
+    BackgroundColor: "#FFC1D5",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#FFC0CB",
+    SecondaryIconColor: "#8B0000",
+  },
+  Teal: {
+    HeaderColor: "#38B2AC",
+    BackgroundColor: "#81E6D9",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#008080",
+    SecondaryIconColor: "#8B0000",
+  },
+  Verde: {
+    HeaderColor: "#065F46",
+    BackgroundColor: "#6EE7B7",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#008000",
+    SecondaryIconColor: "#8B0000",
+  },
+  Violeta: {
+    HeaderColor: "##9F7AEA",
+    BackgroundColor: "#D6BCFA",
+    TitleColor: "#FFFFFF",
+    ContentColor: "#000000",
+    PrimaryIconColor: "#800080",
+    SecondaryIconColor: "#8B0000",
+  },
+  Negro: {
+    HeaderColor: "#1B1A16",
+    BackgroundColor: "#252525",
+    TitleColor: "#AFAFAF",
+    ContentColor: "#F0A502",
+    PrimaryIconColor: "#E45825",
+    SecondaryIconColor: "#8B0000",
+  },
+};

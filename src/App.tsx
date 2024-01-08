@@ -1,5 +1,7 @@
+import BuyListPage from "./pages/BuyListPage";
+
 function App() {
-  return <></>;
+  return <BuyListPage />;
 }
 
 export default App;
