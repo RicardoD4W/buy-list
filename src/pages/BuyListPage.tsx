@@ -1,7 +1,13 @@
 import { useTheme } from "../hooks/useTheme";
+import SearchEngine from "../components/SearchEngine";
+import CustomTitle from "../components/CustomTitle";
+import ListProductCard from "../components/ListProductCard";
+import { mockDataProducts } from "../data/mockData";
 
 function BuyListPage() {
   const { themeState } = useTheme();
+
+  const mockData = mockDataProducts;
 
   return (
     <>
@@ -12,39 +18,22 @@ function BuyListPage() {
         }}
         className="h-screen transition-colors"
       >
-        <div className="w-full flex flex-col items-center">
-          <header
-            className=" transition-colors w-full text-center p-4 font-semibold text-3xl"
-            style={{
-              color: themeState.TitleColor,
-              backgroundColor: themeState.HeaderColor,
-            }}
+        <div className="flex flex-col items-center w-full">
+          <CustomTitle
+            backgroundColor={themeState.HeaderColor}
+            color={themeState.TitleColor}
+            className="w-full p-4 text-3xl font-semibold text-center transition-colors "
           >
             Lista de la Compra
-          </header>
+          </CustomTitle>
           <main
             className="transition-colors"
             style={{
               color: themeState.ContentColor,
             }}
           >
-            <p>buscador</p>
-            <p>No hay productos en la lista</p>
-            <span>
-              {" "}
-              <span style={{ color: themeState.PrimaryIconColor }}>
-                icono 1
-              </span>{" "}
-              hola{" "}
-              <span style={{ color: themeState.SecondaryIconColor }}>
-                icono 2
-              </span>
-            </span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
+            <SearchEngine />
+            <ListProductCard products={mockData} />
           </main>
         </div>
       </div>
