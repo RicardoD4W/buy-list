@@ -4,6 +4,7 @@ export interface ItemProduct {
   nombre: string;
   fecha: string;
   producto: string;
+  descripccion?: string;
   cantidad: number;
   supermercado: Supermercado;
   hora: `${string}:${string}:${string}`;

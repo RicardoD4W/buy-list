@@ -1,18 +1,20 @@
-import { ListProductCardProps } from "../types/props";
+import { type ListProductCardProps } from "../types/props";
 import ProductCard from "./ProductCard";
 
 function ListProductCard({ products }: ListProductCardProps) {
   return (
     <>
-      {products.length === 0 ? (
-        <p>No hay productos</p>
-      ) : (
-        <p>Hay {products.length} productos</p>
-      )}
-      <p>ListProductCard</p>
-      {products.map((product) => (
-        <ProductCard product={product} />
-      ))}
+      <p className="p-1 text-2xl font-medium text-center">
+        {products.length === 0
+          ? "No hay productos"
+          : ` Hay ${products.length} productos`}
+      </p>
+
+      <section className="flex flex-col gap-3 my-3">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </section>
     </>
   );
 }

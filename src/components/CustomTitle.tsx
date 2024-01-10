@@ -1,4 +1,4 @@
-import { CustomTitleProps } from "../types/props";
+import { type CustomTitleProps } from "../types/props";
 
 function CustomTitle({
   className,

@@ -21,3 +21,7 @@ export interface SearchEngineProps {
 export interface ProductCardProps {
   product: ItemProduct;
 }
+
+export interface IconProps {
+  color: string;
+}

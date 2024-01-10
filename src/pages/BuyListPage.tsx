@@ -16,7 +16,7 @@ function BuyListPage() {
           color: themeState.ContentColor,
           backgroundColor: themeState.BackgroundColor,
         }}
-        className="h-screen transition-colors"
+        className="h-full min-h-screen transition-colors"
       >
         <div className="flex flex-col items-center w-full">
           <CustomTitle
@@ -32,7 +32,7 @@ function BuyListPage() {
               color: themeState.ContentColor,
             }}
           >
-            <SearchEngine />
+            <SearchEngine color={themeState.ContentColor} />
             <ListProductCard products={mockData} />
           </main>
         </div>

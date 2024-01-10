@@ -7,7 +7,7 @@ export interface ColorTheme {
   SecondaryIconColor: HexaType;
 }
 
-type HexaType = `#${string}`;
+export type HexaType = `#${string}`;
 
 export interface AvalibeColorsTheme {
   Verde: ColorTheme;

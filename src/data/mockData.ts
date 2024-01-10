@@ -10,7 +10,7 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 2,
     supermercado: "Carrefour",
     hora: "08:30:00",
-    importancia: 3,
+    importancia: 0,
   },
   {
     id: 2,
@@ -19,9 +19,11 @@ export const mockDataProducts: ItemProduct[] = [
     fecha: "2024-01-10",
     producto: "Pan",
     cantidad: 1,
-    supermercado: "Carrefour",
+    supermercado: "Cualquiera",
     hora: "12:15:00",
-    importancia: 3,
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
+    importancia: 1,
   },
   {
     id: 3,
@@ -30,9 +32,9 @@ export const mockDataProducts: ItemProduct[] = [
     fecha: "2024-01-10",
     producto: "Huevos",
     cantidad: 12,
-    supermercado: "Carrefour",
+    supermercado: "Dia",
     hora: "16:45:00",
-    importancia: 3,
+    importancia: 2,
   },
   {
     id: 4,
@@ -43,6 +45,7 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 3,
     supermercado: "Carrefour",
     hora: "10:00:00",
+    descripccion: "congelados de los baratos",
     importancia: 3,
   },
   {
@@ -54,7 +57,9 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 5,
     supermercado: "Carrefour",
     hora: "14:20:00",
-    importancia: 3,
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
+    importancia: 4,
   },
   {
     id: 6,
@@ -65,7 +70,9 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 2,
     supermercado: "Carrefour",
     hora: "18:30:00",
-    importancia: 3,
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
+    importancia: 5,
   },
   {
     id: 7,
@@ -76,6 +83,8 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 4,
     supermercado: "Carrefour",
     hora: "09:45:00",
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
     importancia: 3,
   },
   {
@@ -87,6 +96,8 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 1,
     supermercado: "Carrefour",
     hora: "13:10:00",
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
     importancia: 3,
   },
   {
@@ -98,6 +109,8 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 3,
     supermercado: "Carrefour",
     hora: "17:00:00",
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
     importancia: 3,
   },
   {
@@ -109,6 +122,8 @@ export const mockDataProducts: ItemProduct[] = [
     cantidad: 6,
     supermercado: "Carrefour",
     hora: "11:30:00",
+    descripccion:
+      "descripccion descripccion descripccion descripccion descripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripcciondescripccion",
     importancia: 3,
   },
 ];
