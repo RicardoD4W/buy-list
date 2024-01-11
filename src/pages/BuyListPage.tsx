@@ -1,8 +1,8 @@
 import { useTheme } from "../hooks/useTheme";
 import SearchEngine from "../components/SearchEngine";
-import CustomTitle from "../components/CustomTitle";
 import ListProductCard from "../components/ListProductCard";
 import { mockDataProducts } from "../data/mockData";
+import Header from "../components/Header";
 
 function BuyListPage() {
   const { themeState } = useTheme();
@@ -19,20 +19,14 @@ function BuyListPage() {
         className="h-full min-h-screen transition-colors"
       >
         <div className="flex flex-col items-center w-full">
-          <CustomTitle
-            backgroundColor={themeState.HeaderColor}
-            color={themeState.TitleColor}
-            className="w-full p-4 text-3xl font-semibold text-center transition-colors "
-          >
-            Lista de la Compra
-          </CustomTitle>
+          <Header theme={themeState} />
           <main
             className="transition-colors"
             style={{
               color: themeState.ContentColor,
             }}
           >
-            <SearchEngine color={themeState.ContentColor} />
+            <SearchEngine theme={themeState} />
             <ListProductCard products={mockData} />
           </main>
         </div>

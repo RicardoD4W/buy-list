@@ -1,4 +1,4 @@
-import { starsCount } from "../helpers/functions";
+import { compareForEmojis, starsCount } from "../helpers/functions";
 import { useTheme } from "../hooks/useTheme";
 import IconDelete from "../icons/IconDelete";
 import IconEdit from "../icons/IconEdit";
@@ -34,16 +34,19 @@ function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <article className="block px-3 pt-3 pb-1 rounded-lg bg-white/10 w-72 ">
+      <article
+        style={{ backgroundColor: themeState.CardColor }}
+        className="block px-3 pt-3 pb-1 rounded-lg w-72 "
+      >
         <div>
           <section className="flex justify-between">
-            <p onClick={handleClickToggleEditProduct(id, userId)}>
+            <button onClick={handleClickToggleEditProduct(id, userId)}>
               <IconEdit color={themeState.PrimaryIconColor} />
-            </p>
+            </button>
             <span>{nombre}</span>
-            <p onClick={handleClickDeleteProduct(id, userId)}>
+            <button onClick={handleClickDeleteProduct(id, userId)}>
               <IconDelete color={themeState.SecondaryIconColor} />
-            </p>
+            </button>
           </section>
           <hr
             className="w-full mt-1 border-t-[1px] "
@@ -51,8 +54,8 @@ function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        <p className="h-auto mt-3 font-normal text-center break-all">
-          {producto}
+        <p className="h-auto mt-3 font-medium text-center break-all ">
+          {compareForEmojis(producto)}
         </p>
         {descripccion && (
           <p className="pt-1 pb-4 text-sm font-light leading-[18px] text-center break-all text-balance">

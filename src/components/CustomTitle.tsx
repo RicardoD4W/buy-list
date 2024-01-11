@@ -1,21 +1,10 @@
 import { type CustomTitleProps } from "../types/props";
 
-function CustomTitle({
-  className,
-  children,
-  backgroundColor,
-  color,
-}: CustomTitleProps) {
+function CustomTitle({ children }: CustomTitleProps) {
   return (
-    <header
-      className={className}
-      style={{
-        color,
-        backgroundColor,
-      }}
-    >
+    <p>
       <span>{children}</span>
-    </header>
+    </p>
   );
 }
 
