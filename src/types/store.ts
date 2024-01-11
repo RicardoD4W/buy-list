@@ -5,6 +5,7 @@ export interface ColorTheme {
   ContentColor: HexaType;
   PrimaryIconColor: HexaType;
   SecondaryIconColor: HexaType;
+  CardColor: HexaType;
 }
 
 export type HexaType = `#${string}`;

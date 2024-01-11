@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import { ItemProduct } from "./api";
+import { type ReactNode } from "react";
+import { type ItemProduct } from "./api";
+import { type ColorTheme } from "./store";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -8,8 +9,8 @@ export interface LayoutProps {
 export interface CustomTitleProps {
   className?: string;
   children: ReactNode;
-  color: string;
-  backgroundColor: string;
+  color?: string;
+  backgroundColor?: string;
 }
 
 export interface ListProductCardProps {
@@ -24,4 +25,8 @@ export interface ProductCardProps {
 
 export interface IconProps {
   color: string;
+}
+
+export interface ThemeProps {
+  theme: ColorTheme;
 }
