@@ -1,7 +1,13 @@
+import DrawerNavigation from "./components/DrawerNavigation";
 import BuyListPage from "./pages/BuyListPage";
 
 function App() {
-  return <BuyListPage />;
+  return (
+    <>
+      {/* <DrawerNavigation /> */}
+      <BuyListPage />;
+    </>
+  );
 }
 
 export default App;
