@@ -11,24 +11,38 @@ const DrawerNavigation = () => {
   const isDrawerOpen = usePreferenceStore((state) => state.isDrawerOpen);
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
   const { themeState } = useTheme();
+  let touchStart = 0;
+  let touchEnd = 0;
 
   return (
-    <>
+    <section>
       <button onClick={() => toggleDrawer(true)}>
         <IconMenuOpen />
       </button>
-      <Drawer
-        open={isDrawerOpen}
-        onClose={() => toggleDrawer(!isDrawerOpen)}
-        direction={drawerDirection}
-        size={"100%"}
-        style={{
-          backgroundColor: themeState.BackgroundColor,
+
+      <div
+        onTouchStart={(e) => (touchStart = e.targetTouches[0].pageX)}
+        onTouchEnd={(e) => {
+          touchEnd = e.changedTouches[0].pageX;
+          // if (touchStart < touchEnd) toggleDrawer(true);
+
+          if (touchStart - 70 > touchEnd) toggleDrawer(false);
         }}
       >
-        <DrawerNavigationMenu theme={themeState} />
-      </Drawer>
-    </>
+        <Drawer
+          open={isDrawerOpen}
+          onClose={() => toggleDrawer(!isDrawerOpen)}
+          direction={drawerDirection}
+          size={"100%"}
+          style={{
+            backgroundColor: themeState.BackgroundColor,
+          }}
+          lockBackgroundScroll
+        >
+          <DrawerNavigationMenu theme={themeState} />
+        </Drawer>
+      </div>
+    </section>
   );
 };
 

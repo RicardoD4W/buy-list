@@ -2,26 +2,39 @@ import { type ItemProduct } from "../types/api";
 
 // Recuperamos todos los productos de la sala a la que pertenece el usuario
 // TODO implements
-export const getAllProductsFromRoom = (roomId: number, userId: number) => {};
+export const getAllProductsFromOwnRoom = ({ roomId }: { roomId: number }) => {};
 
 // TODO implements
-export const deleteOneProductFromRoom = (
-  roomId: number,
-  userId: number,
-  productId: number
-) => {};
+export const deleteOneProductFromOwnRoom = ({
+  roomId,
+  userId,
+  productId,
+}: {
+  roomId: number;
+  userId: number;
+  productId: number;
+}) => {};
 
 // TODO implements
-export const deleteAllProductFromRoom = (
-  roomId: number,
-  userId: number,
-  productId: number
-) => {};
+export const deleteAllProductFromOwnRoom = ({
+  roomId,
+  userId,
+  productId,
+}: {
+  roomId: number;
+  userId: number;
+  productId: number;
+}) => {};
 
 // TODO implements
-export const ModifyOneProductFromRoom = (
-  roomId: number,
-  userId: number,
-  productId: number,
-  newProduct: ItemProduct
-) => {};
+export const ModifyOneProductFromOwnRoom = ({
+  roomId,
+  userId,
+  productId,
+  newProduct,
+}: {
+  roomId: number;
+  userId: number;
+  productId: number;
+  newProduct: ItemProduct;
+}) => {};
