@@ -24,8 +24,6 @@ const DrawerNavigation = () => {
         onTouchStart={(e) => (touchStart = e.targetTouches[0].pageX)}
         onTouchEnd={(e) => {
           touchEnd = e.changedTouches[0].pageX;
-          // if (touchStart < touchEnd) toggleDrawer(true);
-
           if (touchStart - 70 > touchEnd) toggleDrawer(false);
         }}
       >
