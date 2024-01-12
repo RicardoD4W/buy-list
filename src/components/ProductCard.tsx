@@ -2,10 +2,12 @@ import { compareForEmojis, starsCount } from "../helpers/functions";
 import { useTheme } from "../hooks/useTheme";
 import IconDelete from "../icons/IconDelete";
 import IconEdit from "../icons/IconEdit";
+import { usePreferenceStore } from "../store/preferencesStore";
 import { type ProductCardProps } from "../types/props";
 
 function ProductCard({ product }: ProductCardProps) {
   const { themeState } = useTheme();
+  const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
 
   const {
     cantidad,
@@ -55,7 +57,7 @@ function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <p className="h-auto mt-3 font-medium text-center break-all ">
-          {compareForEmojis(producto)}
+          {automaticEmojis ? compareForEmojis(producto) : producto}
         </p>
         {descripccion && (
           <p className="pt-1 pb-4 text-sm font-light leading-[18px] text-center break-all text-balance">

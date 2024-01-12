@@ -1,25 +1,32 @@
-import { useState } from "react";
 import Drawer from "react-modern-drawer";
 
 import "react-modern-drawer/dist/index.css";
+import { usePreferenceStore } from "../store/preferencesStore";
+import DrawerNavigationMenu from "./DrawerNavigationMenu";
+import IconMenuOpen from "../icons/IconMenuOpen";
+import { useTheme } from "../hooks/useTheme";
 
 const DrawerNavigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  const drawerDirection = usePreferenceStore((state) => state.drawerDirection);
+  const isDrawerOpen = usePreferenceStore((state) => state.isDrawerOpen);
+  const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
+  const { themeState } = useTheme();
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Show</button>
+      <button onClick={() => toggleDrawer(true)}>
+        <IconMenuOpen />
+      </button>
       <Drawer
-        open={isOpen}
-        onClose={toggleDrawer}
-        direction="left"
-        className="bla"
-        size={"100vw"}
+        open={isDrawerOpen}
+        onClose={() => toggleDrawer(!isDrawerOpen)}
+        direction={drawerDirection}
+        size={"100%"}
+        style={{
+          backgroundColor: themeState.BackgroundColor,
+        }}
       >
-        <button onClick={() => setIsOpen(false)}>Hello World</button>
+        <DrawerNavigationMenu theme={themeState} />
       </Drawer>
     </>
   );

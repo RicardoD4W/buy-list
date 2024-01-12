@@ -30,3 +30,13 @@ export interface IconProps {
 export interface ThemeProps {
   theme: ColorTheme;
 }
+
+export interface DrawerNavigationMenuProps {
+  theme: ColorTheme;
+  // setTheme: React.Dispatch<React.SetStateAction<ColorTheme>>;
+}
+
+export interface MenuItemProps {
+  children: ReactNode;
+  to: string;
+}

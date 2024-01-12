@@ -1,6 +1,6 @@
-import IconConfigPreferences from "../icons/IconConfigPreferences";
-import { ThemeProps } from "../types/props";
+import { type ThemeProps } from "../types/props";
 import CustomTitle from "./CustomTitle";
+import DrawerNavigation from "./DrawerNavigation";
 
 function Header({ theme }: ThemeProps) {
   return (
@@ -11,10 +11,8 @@ function Header({ theme }: ThemeProps) {
         backgroundColor: theme.HeaderColor,
       }}
     >
+      <DrawerNavigation />
       <CustomTitle>Lista de la Compra</CustomTitle>
-      <button onClick={() => console.log("config pulse")}>
-        <IconConfigPreferences />
-      </button>
     </header>
   );
 }

@@ -20,3 +20,10 @@ export interface AvalibeColorsTheme {
   Naranja: ColorTheme;
   Negro: ColorTheme;
 }
+
+export const enum DrawerPosition {
+  LEFT = "left",
+  RIGHT = "right",
+  TOP = "top",
+  BOTTOM = "bottom",
+}
