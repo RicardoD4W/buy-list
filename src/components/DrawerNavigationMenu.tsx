@@ -19,7 +19,7 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           style={{ backgroundColor: theme.HeaderColor }}
         >
           <span className="max-w-[230px] text-xl text-ellipsis overflow-hidden whitespace-nowrap">
-            {room || "No Room"}
+            {room || "Error No Room"}
           </span>
           <button onClick={() => toggleDrawer(false)}>
             <IconMenuClose />
