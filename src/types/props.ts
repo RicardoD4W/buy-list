@@ -29,6 +29,7 @@ export interface IconProps {
 
 export interface ThemeProps {
   theme: ColorTheme;
+  products?: ItemProduct[];
 }
 
 export interface DrawerNavigationMenuProps {

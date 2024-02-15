@@ -1,18 +1,17 @@
 import { useTheme } from "../hooks/useTheme";
 import SearchEngine from "../components/SearchEngine";
 import ListProductCard from "../components/ListProductCard";
-import { mockDataProducts } from "../data/mockData";
 import Header from "../components/Header";
 import { usePreferenceStore } from "../store/preferencesStore";
+import { useBuyListStore } from "../store/buyListStore";
 
 function BuyListPage() {
   const { themeState } = useTheme();
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
+  const products = useBuyListStore((state) => state.products);
 
   let touchStart = 0;
   let touchEnd = 0;
-
-  const mockData = mockDataProducts;
 
   return (
     <>
@@ -36,8 +35,8 @@ function BuyListPage() {
               color: themeState.ContentColor,
             }}
           >
-            <SearchEngine theme={themeState} />
-            <ListProductCard products={mockData} />
+            <SearchEngine theme={themeState} products={products} />
+            <ListProductCard products={products} />
           </main>
         </div>
       </div>
