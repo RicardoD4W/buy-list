@@ -4,8 +4,11 @@ import ListProductCard from "../components/ListProductCard";
 import Header from "../components/Header";
 import { usePreferenceStore } from "../store/preferencesStore";
 import { useBuyListStore } from "../store/buyListStore";
+import { useRedirect } from "../hooks/useRedirect";
 
 function BuyListPage() {
+  useRedirect();
+
   const { themeState } = useTheme();
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
   const products = useBuyListStore((state) => state.products);

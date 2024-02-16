@@ -2,10 +2,12 @@ import { create } from "zustand";
 
 interface UserState {
   user: {
-    userData: string;
+    name: string;
+    email: string;
+    id: number;
   };
 }
 
 export const useUserStore = create<UserState>()((/*set*/) => ({
-  user: { userData: "todo" },
+  user: { name: "a", email: "a", id: 3 },
 }));
