@@ -1,15 +1,17 @@
 import IconAddProduct from "../icons/IconAddProduct";
+import IconBuyList from "../icons/IconBuyList";
 import IconConfigPreferences from "../icons/IconConfigPreferences";
-import IconMenuClose from "../icons/IconMenuClose";
+import IconMenuOpen from "../icons/IconMenuOpen";
 import IconRoom from "../icons/IconRoom";
-import { useBuyListStore } from "../store/buyListStore";
 import { usePreferenceStore } from "../store/preferencesStore";
+import { useUserStore } from "../store/userStore";
 import { DrawerNavigationMenuProps } from "../types/props";
 import MenuItem from "./MenuItem";
 
 function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
-  const room = useBuyListStore((state) => state.sala);
+  const { roomName } = useUserStore((state) => state.room);
+  const { userId } = useUserStore((state) => state.user);
 
   return (
     <div className="w-full font-semibold transition-colors">
@@ -19,21 +21,28 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           style={{ backgroundColor: theme.HeaderColor }}
         >
           <span className="max-w-[230px] text-xl text-ellipsis overflow-hidden whitespace-nowrap">
-            {room || "Error No Room"}
+            {roomName || "Error No Room"}
           </span>
           <button onClick={() => toggleDrawer(false)}>
-            <IconMenuClose />
+            <IconMenuOpen />
           </button>
         </header>
 
         <main className="flex flex-col items-center justify-center pt-2">
-          <MenuItem to="/config">
+          {window.location.pathname !== `/home/${userId}` && (
+            <>
+              <MenuItem to={`/home/${userId}`}>
+                <IconBuyList /> Lista de la Compra
+              </MenuItem>
+            </>
+          )}
+          <MenuItem to={`/addProduct/${userId}`}>
             <IconAddProduct /> Añadir Producto
           </MenuItem>
-          <MenuItem to="/config">
+          <MenuItem to={`/rooms/${userId}`}>
             <IconRoom /> Salas
           </MenuItem>
-          <MenuItem to="/config">
+          <MenuItem to={`/config/${userId}`}>
             <IconConfigPreferences /> Configuración
           </MenuItem>
         </main>

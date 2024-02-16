@@ -2,8 +2,10 @@ import { useState } from "react";
 import "./LoginPage.css";
 import FrontFlipCardLogin from "../components/FrontFlipCardLogin";
 import BackFlipCardLogin from "../components/BackFlipCardLogin";
+import { useRedirect } from "../hooks/useRedirect";
 
 const LoginPage = () => {
+  useRedirect();
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {

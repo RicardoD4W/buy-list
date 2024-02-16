@@ -15,7 +15,7 @@ function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
         >
           Iniciar Sesión
         </h2>
-        <form className="flex flex-col gap-5 mt-3">
+        <form name="iniciar-sesion" className="flex flex-col gap-5 mt-3">
           <div>
             <label
               className="block text-sm font-medium"

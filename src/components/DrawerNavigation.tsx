@@ -3,8 +3,8 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { usePreferenceStore } from "../store/preferencesStore";
 import DrawerNavigationMenu from "./DrawerNavigationMenu";
-import IconMenuOpen from "../icons/IconMenuOpen";
 import { useTheme } from "../hooks/useTheme";
+import IconMenuClose from "../icons/IconMenuClose";
 
 const DrawerNavigation = () => {
   const drawerDirection = usePreferenceStore((state) => state.drawerDirection);
@@ -17,7 +17,7 @@ const DrawerNavigation = () => {
   return (
     <section>
       <button onClick={() => toggleDrawer(true)}>
-        <IconMenuOpen />
+        <IconMenuClose />
       </button>
 
       <div

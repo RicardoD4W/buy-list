@@ -4,10 +4,11 @@ import { useEffect } from "react";
 
 export const useRedirect = () => {
   const navigate = useNavigate();
-  const { name, email, id } = useUserStore((state) => state.user);
+  const { name, email, userId } = useUserStore((state) => state.user);
 
   useEffect(() => {
-    (!name || !email || !id) && navigate("/login");
-    name && email && id && navigate(`/home/${id}`);
-  }, [name, email, id]);
+    (!name || !email || !userId) && navigate("/login");
+    name && email && userId && navigate(`/home/${userId}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, email, userId]);
 };

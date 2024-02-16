@@ -40,4 +40,5 @@ export interface DrawerNavigationMenuProps {
 export interface MenuItemProps {
   children: ReactNode;
   to: string;
+  action?: () => void;
 }

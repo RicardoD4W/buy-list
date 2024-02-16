@@ -15,7 +15,7 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
         >
           Crear una cuenta
         </h2>
-        <form className="flex flex-col gap-5 mt-3">
+        <form name="crear" className="flex flex-col gap-5 mt-3">
           <div>
             <label
               className="block text-sm font-medium"

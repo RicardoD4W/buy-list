@@ -4,10 +4,15 @@ interface UserState {
   user: {
     name: string;
     email: string;
-    id: number;
+    userId: number;
+  };
+  room: {
+    roomName: string;
+    roomUUID: string;
   };
 }
 
 export const useUserStore = create<UserState>()((/*set*/) => ({
-  user: { name: "a", email: "a", id: 1 },
+  user: { name: "a", email: "a", userId: 1 },
+  room: { roomName: "Familia", roomUUID: crypto.randomUUID() },
 }));
