@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useTheme } from "./hooks/useTheme";
 import BuyListPage from "./pages/BuyListPage";
 import SecurePage from "./pages/SecurePage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const { themeState } = useTheme();
@@ -13,7 +14,7 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<SecurePage />}></Route>
-        <Route path="/login" element={<>login</>}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/home/:idUser" element={<BuyListPage />}></Route>
         <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>

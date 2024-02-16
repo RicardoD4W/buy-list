@@ -44,7 +44,7 @@ export const paletteColor: AvalibeColorsTheme = {
     ContentColor: "#000000",
     PrimaryIconColor: "#008080",
     SecondaryIconColor: "#8B0000",
-    CardColor: "#FFFFFF",
+    CardColor: "#F0FCFC",
   },
   Verde: {
     HeaderColor: "#065F46",
