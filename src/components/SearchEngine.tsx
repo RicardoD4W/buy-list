@@ -38,6 +38,7 @@ function SearchEngine({ theme, products }: ThemeProps) {
         >
           <IconSearch />
           <input
+            name="search"
             onChange={handleInputSearch}
             className="relative ml-1 bg-transparent outline-none active:ring-0 "
             spellCheck

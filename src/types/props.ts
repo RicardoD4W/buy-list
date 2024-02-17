@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { MouseEventHandler, type ReactNode } from "react";
 import { type ItemProduct } from "./api";
 import { type ColorTheme } from "./store";
 
@@ -41,4 +41,19 @@ export interface MenuItemProps {
   children: ReactNode;
   to: string;
   action?: () => void;
+}
+
+export interface ContentProductCardProps {
+  handleClickToggleEditProduct: () => void;
+  handleClickDeleteProduct: (
+    productId: number,
+    userId: number,
+    roomUUID: string
+  ) => MouseEventHandler<HTMLButtonElement> | undefined;
+  product: ItemProduct;
+}
+
+export interface ContenEditabletProductCardProps {
+  product: ItemProduct;
+  exitEditMode: () => MouseEventHandler<HTMLButtonElement> | undefined;
 }
