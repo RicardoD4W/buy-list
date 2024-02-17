@@ -9,7 +9,11 @@ export const useRedirect = () => {
 
   useEffect(() => {
     (!name || !email || !userId) && navigate("/login");
+
+    !roomUUID && navigate(`/rooms/${userId}`);
+
     name && email && userId && navigate(`/home/${roomUUID}`);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, email, userId]);
 };

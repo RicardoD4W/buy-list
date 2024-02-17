@@ -10,7 +10,7 @@ import MenuItem from "./MenuItem";
 
 function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
-  const { roomName } = useUserStore((state) => state.room);
+  const { roomName, roomUUID } = useUserStore((state) => state.room);
   const { userId } = useUserStore((state) => state.user);
 
   return (
@@ -29,14 +29,14 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
         </header>
 
         <main className="flex flex-col items-center justify-center pt-2">
-          {window.location.pathname !== `/home/${userId}` && (
+          {window.location.pathname !== `/home/${roomUUID}` && (
             <>
-              <MenuItem to={`/home/${userId}`}>
+              <MenuItem to={`/home/${roomUUID}`}>
                 <IconBuyList /> Lista de la Compra
               </MenuItem>
             </>
           )}
-          <MenuItem to={`/addProduct/${userId}`}>
+          <MenuItem to={`/addProduct/${roomUUID}`}>
             <IconAddProduct /> Añadir Producto
           </MenuItem>
           <MenuItem to={`/rooms/${userId}`}>
