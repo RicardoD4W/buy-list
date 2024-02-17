@@ -44,7 +44,9 @@ export interface MenuItemProps {
 }
 
 export interface ContentProductCardProps {
-  handleClickToggleEditProduct: () => void;
+  handleClickToggleEditProduct: () =>
+    | MouseEventHandler<HTMLButtonElement>
+    | undefined;
   handleClickDeleteProduct: (
     productId: number,
     userId: number,

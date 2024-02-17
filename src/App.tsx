@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SecurePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/home/:userId" element={<BuyListPage />}></Route>
+        <Route path="/home/:roomUUID" element={<BuyListPage />}></Route>
         <Route path="/addProduct/:userId" element={<>coming soon</>}></Route>
         <Route path="/rooms/:userId" element={<>coming soon</>}></Route>
         <Route path="/config/:userId" element={<>coming soon</>}></Route>
