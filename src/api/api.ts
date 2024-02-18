@@ -3,7 +3,7 @@ import { type ItemProduct } from "../types/api";
 // Recuperamos todos los productos de la sala a la que pertenece el usuario
 // TODO implements
 export const getAllProductsFromOwnRoom = (
-  roomUUID: string,
+  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
   userId: number
 ) => {};
 
@@ -11,7 +11,7 @@ export const getAllProductsFromOwnRoom = (
 export const deleteOneProductFromOwnRoom = (
   userId: number,
   productId: number,
-  roomUUID: string
+  roomUUID: `${string}-${string}-${string}-${string}-${string}`
 ) => {
   console.log(
     "User: ",
@@ -26,13 +26,13 @@ export const deleteOneProductFromOwnRoom = (
 
 // TODO implements
 export const deleteAllProductFromOwnRoom = (
-  roomUUID: string,
+  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
   userId: number
 ) => {};
 
 // TODO implements
 export const modifyOneProductFromOwnRoom = (
-  roomUUID: string,
+  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
   userId: number,
   productId: number,
   newProduct: ItemProduct

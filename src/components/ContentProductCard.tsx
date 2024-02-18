@@ -12,7 +12,7 @@ function ContentProductCard({
   product,
 }: ContentProductCardProps) {
   const { themeState } = useTheme();
-  const { roomUUID } = useUserStore((state) => state.room);
+  const { roomUUID } = useUserStore((state) => state.actualRoom);
   const { userId } = useUserStore((state) => state.user);
   const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
 

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export const useRedirect = () => {
   const navigate = useNavigate();
   const { name, email, userId } = useUserStore((state) => state.user);
-  const { roomUUID } = useUserStore((state) => state.room);
+  const { roomUUID } = useUserStore((state) => state.actualRoom);
 
   useEffect(() => {
     (!name || !email || !userId) && navigate("/login");

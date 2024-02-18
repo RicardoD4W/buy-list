@@ -16,7 +16,7 @@ function ContentEditableProductCard({
   const [isOk, setIsok] = useState({ cantidad: true, producto: true });
 
   const { themeState } = useTheme();
-  const { roomUUID } = useUserStore((state) => state.room);
+  const { roomUUID } = useUserStore((state) => state.actualRoom);
   const { userId } = useUserStore((state) => state.user);
 
   const {

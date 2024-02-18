@@ -6,13 +6,20 @@ interface UserState {
     email: string;
     userId: number;
   };
-  room: {
+  actualRoom: {
     roomName: string;
-    roomUUID: string;
+    roomUUID: `${string}-${string}-${string}-${string}-${string}`;
   };
+  avaliblesRooms: [
+    {
+      roomName: string;
+      roomUUID: `${string}-${string}-${string}-${string}-${string}`;
+    }
+  ];
 }
 
 export const useUserStore = create<UserState>()((/*set*/) => ({
   user: { name: "a", email: "a", userId: 1 },
-  room: { roomName: "Familia", roomUUID: crypto.randomUUID() },
+  actualRoom: { roomName: "Familia", roomUUID: crypto.randomUUID() },
+  avaliblesRooms: [{ roomName: "Familia", roomUUID: crypto.randomUUID() }],
 }));

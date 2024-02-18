@@ -10,7 +10,7 @@ import MenuItem from "./MenuItem";
 
 function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
-  const { roomName, roomUUID } = useUserStore((state) => state.room);
+  const { roomName, roomUUID } = useUserStore((state) => state.actualRoom);
   const { userId } = useUserStore((state) => state.user);
 
   return (
