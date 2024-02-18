@@ -16,7 +16,10 @@ const DrawerNavigation = () => {
 
   return (
     <section>
-      <button onClick={() => toggleDrawer(true)}>
+      <button
+        onClick={() => toggleDrawer(true)}
+        className="flex items-center justify-center"
+      >
         <IconMenuClose />
       </button>
 

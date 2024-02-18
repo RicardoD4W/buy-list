@@ -23,7 +23,10 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           <span className="max-w-[230px] text-xl text-ellipsis overflow-hidden whitespace-nowrap">
             {roomName || "Error No Room"}
           </span>
-          <button onClick={() => toggleDrawer(false)}>
+          <button
+            onClick={() => toggleDrawer(false)}
+            className="flex items-center justify-center"
+          >
             <IconMenuOpen />
           </button>
         </header>

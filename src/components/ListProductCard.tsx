@@ -10,7 +10,7 @@ function ListProductCard({ products }: ListProductCardProps) {
           : ` Hay ${products.length} productos`}
       </p>
 
-      <section className="flex flex-col gap-3 my-3">
+      <section className="flex flex-col gap-3 my-3 sm:flex-wrap sm:flex-row sm:gap-3 sm:justify-center">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

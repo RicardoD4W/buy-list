@@ -5,7 +5,7 @@ import DrawerNavigation from "./DrawerNavigation";
 function Header({ theme }: ThemeProps) {
   return (
     <header
-      className="flex items-center justify-around w-full p-4 text-2xl font-semibold transition-colors max-w-[500px]"
+      className="flex items-center justify-around w-full p-4 text-2xl font-semibold transition-colors sm:justify-center sm:gap-x-5"
       style={{
         color: theme.TitleColor,
         backgroundColor: theme.HeaderColor,
