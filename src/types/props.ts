@@ -50,7 +50,7 @@ export interface ContentProductCardProps {
   handleClickDeleteProduct: (
     productId: number,
     userId: number,
-    roomUUID: string
+    roomUUID: `${string}-${string}-${string}-${string}-${string}`
   ) => MouseEventHandler<HTMLButtonElement> | undefined;
   product: ItemProduct;
 }

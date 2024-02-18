@@ -12,7 +12,12 @@ function ProductCard({ product }: ProductCardProps) {
   };
 
   const handleClickDeleteProduct =
-    (productId: number, userId: number, roomUUID: string) => () => {
+    (
+      productId: number,
+      userId: number,
+      roomUUID: `${string}-${string}-${string}-${string}-${string}`
+    ) =>
+    () => {
       deleteOneProductFromOwnRoom(userId, productId, roomUUID);
     };
 
