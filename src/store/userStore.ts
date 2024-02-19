@@ -8,18 +8,18 @@ interface UserState {
   };
   actualRoom: {
     roomName: string;
-    roomUUID: `${string}-${string}-${string}-${string}-${string}`;
+    roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
   };
   avaliblesRooms: [
     {
       roomName: string;
-      roomUUID: `${string}-${string}-${string}-${string}-${string}`;
+      roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
     }
   ];
 }
 
 export const useUserStore = create<UserState>()((/*set*/) => ({
-  user: { name: "a", email: "a", userId: 1 },
-  actualRoom: { roomName: "Familia", roomUUID: crypto.randomUUID() },
-  avaliblesRooms: [{ roomName: "Familia", roomUUID: crypto.randomUUID() }],
+  user: { name: "", email: "", userId: 0 },
+  actualRoom: { roomName: "", roomUUID: undefined },
+  avaliblesRooms: [{ roomName: "", roomUUID: undefined }],
 }));

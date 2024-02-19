@@ -8,6 +8,6 @@ interface BuyListState {
 }
 
 export const useBuyListStore = create<BuyListState>()((set) => ({
-  products: [...mockDataProducts],
+  products: [...mockDataProducts], // TODO eliminar
   setProducts: (products) => set(() => ({ products })),
 }));

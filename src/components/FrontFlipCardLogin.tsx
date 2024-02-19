@@ -1,7 +1,21 @@
+import { register } from "../api/api";
 import { useTheme } from "../hooks/useTheme";
 
 function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
   const { themeState } = useTheme();
+
+  const handleSubmitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+
+    const formData = new FormData(form);
+    const username = formData.get("username") + "";
+    const email = formData.get("email") + "";
+    const password = formData.get("password") + "";
+    const password_confirm = formData.get("password_confirm") + "";
+
+    await register(username, email, password, password_confirm); // TODO action
+  };
 
   return (
     <>
@@ -15,7 +29,11 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
         >
           Crear una cuenta
         </h2>
-        <form name="crear" className="flex flex-col gap-5 mt-3">
+        <form
+          onSubmit={handleSubmitForm}
+          name="crear"
+          className="flex flex-col gap-5 mt-3"
+        >
           <div>
             <label
               className="block text-sm font-medium"
@@ -40,8 +58,8 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
               <input
                 required
                 placeholder="pert_34@gmail.com"
-                type="password"
-                name="password"
+                type="email"
+                name="email"
                 className="w-full p-2 mt-1 border-gray-300 rounded-md"
               />
             </label>
@@ -57,6 +75,21 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
                 type="password"
                 placeholder="******************"
                 name="password"
+                className="w-full p-2 mt-1 border-gray-300 rounded-md"
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium"
+              style={{ color: themeState.ContentColor }}
+            >
+              Repetir contraseña
+              <input
+                required
+                type="password"
+                placeholder="******************"
+                name="password_confirm"
                 className="w-full p-2 mt-1 border-gray-300 rounded-md"
               />
             </label>

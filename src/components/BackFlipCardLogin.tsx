@@ -1,7 +1,19 @@
+import { login } from "../api/api";
 import { useTheme } from "../hooks/useTheme";
 
 function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
   const { themeState } = useTheme();
+
+  const handleSubmitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+
+    const formData = new FormData(form);
+    const newUsername = formData.get("newUsername") + "";
+    const newPassword = formData.get("newPassword") + "";
+
+    await login(newUsername, newPassword); // TODO action
+  };
 
   return (
     <>
@@ -15,7 +27,11 @@ function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
         >
           Iniciar Sesión
         </h2>
-        <form name="iniciar-sesion" className="flex flex-col gap-5 mt-3">
+        <form
+          onSubmit={handleSubmitForm}
+          name="iniciar-sesion"
+          className="flex flex-col gap-5 mt-3"
+        >
           <div>
             <label
               className="block text-sm font-medium"

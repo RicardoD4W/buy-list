@@ -8,11 +8,9 @@ export const useRedirect = () => {
   const { roomUUID } = useUserStore((state) => state.actualRoom);
 
   useEffect(() => {
-    (!name || !email || !userId) && navigate("/login");
-
-    !roomUUID && navigate(`/rooms/${userId}`);
-
-    name && email && userId && navigate(`/home/${roomUUID}`);
+    if (!name || !email || !userId) return navigate("/login");
+    if (!roomUUID) return navigate(`/rooms/${userId}`);
+    if (name && email && userId) return navigate(`/home/${roomUUID}`);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, email, userId]);
