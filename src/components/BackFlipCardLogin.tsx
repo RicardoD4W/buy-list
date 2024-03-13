@@ -1,18 +1,28 @@
 import { login } from "../api/api";
 import { useTheme } from "../hooks/useTheme";
+import { useUserStore } from "../store/userStore";
 
 function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
   const { themeState } = useTheme();
 
+  const setUser = useUserStore((state) => state.setUser);
+
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const form = e.target as HTMLFormElement;
 
     const formData = new FormData(form);
-    const newUsername = formData.get("newUsername") + "";
-    const newPassword = formData.get("newPassword") + "";
+    const newUsername = formData.get("back_username") + "";
+    const newPassword = formData.get("back_password") + "";
 
-    await login(newUsername, newPassword); // TODO action
+    await login(newUsername, newPassword).then((res): void => {
+      const { user, access_token, error } = res;
+      if (error) return alert(error);
+
+      setUser({ ...user, access_token });
+      form.reset();
+    });
   };
 
   return (
@@ -41,8 +51,8 @@ function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
               <input
                 required
                 placeholder="pert_34@gmail.com"
-                type="text"
-                name="newUsername"
+                type="email"
+                name="back_username"
                 className="w-full p-2 mt-1 border-gray-300 rounded-md"
               />
             </label>
@@ -57,7 +67,7 @@ function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
                 required
                 placeholder="******************"
                 type="password"
-                name="newPassword"
+                name="back_password"
                 className="w-full p-2 mt-1 border-gray-300 rounded-md"
               />
             </label>

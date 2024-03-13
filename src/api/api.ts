@@ -70,8 +70,6 @@ export const register = async (
 
   const response = await request.json();
 
-  console.log(response); // TODO eliminar
-
   return response;
 };
 
@@ -92,8 +90,6 @@ export const login = async (email: string, password: string) => {
   });
 
   const response = await request.json();
-
-  console.log(response);
 
   return response;
 };
