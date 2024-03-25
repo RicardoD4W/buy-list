@@ -21,7 +21,7 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           style={{ backgroundColor: theme.HeaderColor }}
         >
           <span className="max-w-[230px] text-xl text-ellipsis overflow-hidden whitespace-nowrap">
-            {roomName || "Error No Room"}
+            {roomName || ""}
           </span>
           <button
             onClick={() => toggleDrawer(false)}
@@ -32,19 +32,18 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
         </header>
 
         <main className="flex flex-col items-center justify-center pt-2">
-          {window.location.pathname !== `/home/${roomUUID}` && (
-            <>
-              <MenuItem to={`/home/${roomUUID}`}>
-                <IconBuyList /> Lista de la Compra
-              </MenuItem>
-            </>
-          )}
+          <MenuItem to={`/home/${roomUUID}`}>
+            <IconBuyList /> Lista de la Compra
+          </MenuItem>
+
           <MenuItem to={`/addProduct/${roomUUID}`}>
             <IconAddProduct /> Añadir Producto
           </MenuItem>
+
           <MenuItem to={`/rooms/${userId}`}>
             <IconRoom /> Salas
           </MenuItem>
+
           <MenuItem to={`/config/${userId}`}>
             <IconConfigPreferences /> Configuración
           </MenuItem>

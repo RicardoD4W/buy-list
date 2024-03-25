@@ -4,6 +4,7 @@ import BuyListPage from "./pages/BuyListPage";
 import SecurePage from "./pages/SecurePage";
 import LoginPage from "./pages/LoginPage";
 import SelectRoom from "./pages/SelectRoom";
+import MainLayout from "./pages/MainLayout";
 
 function App() {
   const { themeState } = useTheme();
@@ -16,10 +17,22 @@ function App() {
       <Routes>
         <Route path="/" element={<SecurePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/home/:roomUUID" element={<BuyListPage />}></Route>
-        <Route path="/addProduct/:userId" element={<>coming soon</>}></Route>
-        <Route path="/rooms/:userId" element={<SelectRoom />}></Route>
-        <Route path="/config/:userId" element={<>coming soon</>}></Route>
+
+        <Route element={<MainLayout title="Lista de la compra" />}>
+          <Route path="/home/:roomUUID" element={<BuyListPage />}></Route>
+        </Route>
+        <Route element={<MainLayout title="Añadir producto" />}>
+          <Route path="/addProduct/:userId" element={<>coming soon</>}></Route>
+        </Route>
+
+        <Route element={<MainLayout title="Elegir sala" />}>
+          <Route path="/rooms/:userId" element={<SelectRoom />}></Route>
+        </Route>
+
+        <Route element={<MainLayout title="Configuración" />}>
+          <Route path="/config/:userId" element={<>coming soon</>}></Route>
+        </Route>
+
         <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </div>

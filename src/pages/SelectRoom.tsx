@@ -23,8 +23,7 @@ function SelectRoom() {
         }}
         className="flex flex-col items-center justify-center pt-12"
       >
-        <h2 className="text-3xl font-semibold">Elegir sala: </h2>
-        <div className="flex flex-col items-center justify-center gap-8 mt-12">
+        <div className="flex flex-col items-center justify-center gap-8 ">
           {userRooms?.user.map((userRomData) => (
             <RoomDataCard
               key={userRomData?.id}

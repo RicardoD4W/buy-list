@@ -1,8 +1,6 @@
 import { useTheme } from "../hooks/useTheme";
 import SearchEngine from "../components/SearchEngine";
 import ListProductCard from "../components/ListProductCard";
-import Header from "../components/Header";
-import { usePreferenceStore } from "../store/preferencesStore";
 import { useBuyListStore } from "../store/buyListStore";
 import { useRedirect } from "../hooks/useRedirect";
 
@@ -10,11 +8,7 @@ function BuyListPage() {
   useRedirect();
 
   const { themeState } = useTheme();
-  const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
   const products = useBuyListStore((state) => state.products);
-
-  let touchStart = 0;
-  let touchEnd = 0;
 
   return (
     <>
@@ -24,14 +18,8 @@ function BuyListPage() {
           backgroundColor: themeState.BackgroundColor,
         }}
         className="h-full min-h-screen transition-colors"
-        onTouchStart={(e) => (touchStart = e.targetTouches[0].pageX)}
-        onTouchEnd={(e) => {
-          touchEnd = e.changedTouches[0].pageX;
-          if (touchStart + 70 < touchEnd) toggleDrawer(true);
-        }}
       >
         <div className="flex flex-col items-center w-full">
-          <Header theme={themeState} />
           <main
             className="transition-colors"
             style={{
