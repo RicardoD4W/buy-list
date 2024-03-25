@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-interface UserState {
+export interface UserState {
   user: {
     name: string;
     email: string;
@@ -19,7 +19,17 @@ interface UserState {
       roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
     }
   ];
-  setUser: (user: Pick<UserState, "user">) => void;
+  setUser: (user: {
+    name: string;
+    email: string;
+    id: number;
+    access_token: string;
+    authorized: boolean;
+  }) => void;
+  setActualRoom: (actualRoom: {
+    roomName: string;
+    roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
+  }) => void;
 }
 
 export const useUserStore = create<UserState>()(
@@ -37,6 +47,7 @@ export const useUserStore = create<UserState>()(
         avaliblesRooms: [{ roomName: "", roomUUID: undefined }],
 
         setUser: (user) => set({ user }),
+        setActualRoom: (actualRoom) => set({ actualRoom }),
       }),
       { name: "user-cache" }
     )

@@ -35,3 +35,17 @@ export const importanciaValue = [
   "Necesitaríamos para esta semana",
   "No hay y necesitamos",
 ];
+
+export interface FetchUserRoom {
+  user: [
+    id: string,
+    name: string,
+    description: string,
+    created_at: Date | null,
+    updated_at: Date | null,
+    pivot: {
+      user_id: number;
+      room_id: string;
+    }
+  ];
+}

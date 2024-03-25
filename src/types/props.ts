@@ -59,3 +59,15 @@ export interface ContenEditabletProductCardProps {
   product: ItemProduct;
   exitEditMode: () => MouseEventHandler<HTMLButtonElement> | undefined;
 }
+
+export interface RoomDataCardProps {
+  id: `${string}-${string}-${string}-${string}-${string}` | undefined;
+  name: string;
+  description: string;
+  created_at: Date | null;
+  updated_at: Date | null;
+  pivot: {
+    user_id: number;
+    room_id: string;
+  };
+}

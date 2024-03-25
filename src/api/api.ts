@@ -93,3 +93,18 @@ export const login = async (email: string, password: string) => {
 
   return response;
 };
+
+export const getAllRoomsFromAnUser = async (Bearer: string, userId: number) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${Bearer}`);
+
+  const request = await fetch(`${base_url}/rooms/${userId}`, {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+
+  const response = await request.json();
+
+  return response;
+};
