@@ -12,6 +12,7 @@ export const useRedirect = () => {
     access_token,
     authorized,
   } = useUserStore((state) => state.user);
+
   const { roomUUID } = useUserStore((state) => state.actualRoom);
 
   useEffect(() => {

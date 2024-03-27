@@ -2,12 +2,22 @@ import { type ItemProduct } from "../types/api";
 
 const base_url = import.meta.env.VITE_BASE_URL;
 
-// Recuperamos todos los productos de la sala a la que pertenece el usuario
-// TODO implements
-export const getAllProductsFromOwnRoom = (
+export const getAllProductsFromOwnRoom = async (
   roomUUID: `${string}-${string}-${string}-${string}-${string}`,
-  userId: number
-) => {};
+  Bearer: string
+) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${Bearer}`);
+
+  const request = await fetch(`${base_url}/products/${roomUUID}`, {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+
+  const response = await request.json();
+  return response;
+};
 
 // TODO implements
 export const deleteOneProductFromOwnRoom = (

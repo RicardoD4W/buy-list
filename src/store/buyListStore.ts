@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { type ItemProduct } from "../types/api";
-import { mockDataProducts } from "../data/mockData";
 
 interface BuyListState {
   products: ItemProduct[];
@@ -8,6 +7,6 @@ interface BuyListState {
 }
 
 export const useBuyListStore = create<BuyListState>()((set) => ({
-  products: [...mockDataProducts], // TODO eliminar
+  products: [],
   setProducts: (products) => set(() => ({ products })),
 }));

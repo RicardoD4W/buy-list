@@ -3,12 +3,25 @@ import SearchEngine from "../components/SearchEngine";
 import ListProductCard from "../components/ListProductCard";
 import { useBuyListStore } from "../store/buyListStore";
 import { useRedirect } from "../hooks/useRedirect";
+import { useEffect } from "react";
+import { getAllProductsFromOwnRoom } from "../api/api";
+import { useUserStore } from "../store/userStore";
 
 function BuyListPage() {
   useRedirect();
 
   const { themeState } = useTheme();
   const products = useBuyListStore((state) => state.products);
+  const { roomUUID } = useUserStore((state) => state.actualRoom);
+  const setProducts = useBuyListStore((state) => state.setProducts);
+  const user = useUserStore((state) => state.user);
+
+  useEffect(() => {
+    if (roomUUID === undefined) return;
+    getAllProductsFromOwnRoom(roomUUID, user.access_token).then((res) => {
+      setProducts(res.products);
+    });
+  }, [roomUUID]);
 
   return (
     <>
