@@ -6,6 +6,7 @@ import { useRedirect } from "../hooks/useRedirect";
 import { useEffect } from "react";
 import { getAllProductsFromOwnRoom } from "../api/api";
 import { useUserStore } from "../store/userStore";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 function BuyListPage() {
   useRedirect();
@@ -40,7 +41,21 @@ function BuyListPage() {
             }}
           >
             <SearchEngine theme={themeState} products={products} />
-            <ListProductCard products={products} />
+
+            {products ? (
+              <ListProductCard products={products} />
+            ) : (
+              <MagnifyingGlass
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="magnifying-glass-loading"
+                wrapperStyle={{}}
+                wrapperClass="magnifying-glass-wrapper"
+                glassColor="#c0efff"
+                color="#e15b64"
+              />
+            )}
           </main>
         </div>
       </div>

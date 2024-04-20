@@ -17,11 +17,11 @@ function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
     const newPassword = formData.get("back_password") + "";
 
     await login(newUsername, newPassword).then((res): void => {
-      const { user, access_token, errors } = res;
-      if (errors) {
+      const { user, access_token, error } = res;
+      if (error) {
         console.log();
         // TODO arreglar
-        return alert(Object.values(errors).map((e) => e + "\n"));
+        return alert(error);
       }
 
       setUser({ ...user, access_token });

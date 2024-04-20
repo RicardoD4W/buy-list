@@ -32,13 +32,17 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
         </header>
 
         <main className="flex flex-col items-center justify-center pt-2">
-          <MenuItem to={`/home/${roomUUID}`}>
-            <IconBuyList /> Lista de la Compra
-          </MenuItem>
+          {roomUUID && (
+            <MenuItem to={`/home/${roomUUID}`}>
+              <IconBuyList /> Lista de la Compra
+            </MenuItem>
+          )}
 
-          <MenuItem to={`/addProduct/${roomUUID}`}>
-            <IconAddProduct /> Añadir Producto
-          </MenuItem>
+          {roomUUID && (
+            <MenuItem to={`/addProduct/${roomUUID}`}>
+              <IconAddProduct /> Añadir Producto
+            </MenuItem>
+          )}
 
           <MenuItem to={`/rooms/${userId}`}>
             <IconRoom /> Salas
