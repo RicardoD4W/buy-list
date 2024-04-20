@@ -62,6 +62,7 @@ export const register = async (
   pass_confirm: string
 ) => {
   const myHeaders = new Headers();
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
@@ -71,13 +72,13 @@ export const register = async (
     "password_confirmation": pass_confirm,
   });
 
-  const request = await fetch(`${base_url}/register/`, {
+  const requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: raw,
-    redirect: "follow",
-  });
+  };
 
+  const request = await fetch(`${base_url}/register/`, requestOptions);
   const response = await request.json();
 
   return response;
@@ -86,6 +87,7 @@ export const register = async (
 export const login = async (email: string, password: string) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
 
   const raw = JSON.stringify({
     "email": email,

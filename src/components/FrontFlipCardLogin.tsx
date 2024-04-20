@@ -16,17 +16,20 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
     const password = formData.get("frontPassword") + "";
     const password_confirm = formData.get("front_password_confirm") + "";
 
-    await register(username, email, password, password_confirm)
-      .then((res): void => {
-        const { user, access_token } = res;
+    await register(username, email, password, password_confirm).then(
+      (res): void => {
+        const { user, access_token, errors } = res;
+        if (errors) {
+          console.log();
+          // TODO arreglar
+          return alert(Object.values(errors).map((e) => e + "\n"));
+        }
+
         setUser({ ...user, access_token });
         handleFlip();
         form.reset();
-      })
-      .catch((error): void => {
-        console.log("error: ", error);
-        alert(error);
-      });
+      }
+    );
   };
 
   return (
