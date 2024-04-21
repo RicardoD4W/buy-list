@@ -15,6 +15,8 @@ export const getAllProductsFromOwnRoom = async (
     redirect: "follow",
   });
 
+  if (!request.ok) throw new Error("Error en la petición");
+
   const response = await request.json();
   return response;
 };

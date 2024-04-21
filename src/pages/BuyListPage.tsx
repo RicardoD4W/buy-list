@@ -3,7 +3,7 @@ import SearchEngine from "../components/SearchEngine";
 import ListProductCard from "../components/ListProductCard";
 import { useBuyListStore } from "../store/buyListStore";
 import { useRedirect } from "../hooks/useRedirect";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllProductsFromOwnRoom } from "../api/api";
 import { useUserStore } from "../store/userStore";
 import { MagnifyingGlass } from "react-loader-spinner";
@@ -16,12 +16,19 @@ function BuyListPage() {
   const { roomUUID } = useUserStore((state) => state.actualRoom);
   const setProducts = useBuyListStore((state) => state.setProducts);
   const user = useUserStore((state) => state.user);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  useEffect(() => {
+  const fetchProductsData = async () => {
     if (roomUUID === undefined) return;
-    getAllProductsFromOwnRoom(roomUUID, user.access_token).then((res) => {
+    setIsLoading(true);
+    await getAllProductsFromOwnRoom(roomUUID, user.access_token).then((res) => {
       setProducts(res.products);
     });
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchProductsData();
   }, [roomUUID]);
 
   return (
@@ -42,19 +49,21 @@ function BuyListPage() {
           >
             <SearchEngine theme={themeState} products={products} />
 
-            {products ? (
-              <ListProductCard products={products} />
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <MagnifyingGlass
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="magnifying-glass-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="magnifying-glass-wrapper"
+                  glassColor="#c0efff"
+                  color="#e15b64"
+                />
+              </div>
             ) : (
-              <MagnifyingGlass
-                visible={true}
-                height="80"
-                width="80"
-                ariaLabel="magnifying-glass-loading"
-                wrapperStyle={{}}
-                wrapperClass="magnifying-glass-wrapper"
-                glassColor="#c0efff"
-                color="#e15b64"
-              />
+              <ListProductCard products={products} />
             )}
           </main>
         </div>
