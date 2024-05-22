@@ -15,13 +15,13 @@ function SearchEngine({ theme, products }: ThemeProps) {
       e.currentTarget.value !== ""
         ? productsRef.current.filter((product) => {
             return (
-              product.producto
+              product.product
                 .toLocaleUpperCase()
                 .includes(e.currentTarget.value.toLocaleUpperCase()) ||
-              product.supermercado
+              product.supermarket
                 .toLocaleUpperCase()
                 .includes(e.currentTarget.value.toLocaleUpperCase()) ||
-              product.importancia === +e.currentTarget.value
+              product.importancy === +e.currentTarget.value
             );
           })
         : productsRef.current;

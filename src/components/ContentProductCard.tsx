@@ -1,7 +1,9 @@
-import { compareForEmojis, starsCount } from "../helpers/functions";
+import { compareForEmojis, formatDate, starsCount } from "../helpers/functions";
 import { useTheme } from "../hooks/useTheme";
 import IconDelete from "../icons/IconDelete";
 import IconEdit from "../icons/IconEdit";
+import IconEditProduct from "../icons/IconEditProduct";
+import IconPlusProduct from "../icons/IconPlusProduct";
 import { usePreferenceStore } from "../store/preferencesStore";
 import { useUserStore } from "../store/userStore";
 import { ContentProductCardProps } from "../types/props";
@@ -17,15 +19,15 @@ function ContentProductCard({
   const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
 
   const {
-    cantidad,
-    fecha,
-    hora,
+    uds: cantidad,
+    created_at,
+    updated_at,
     id: productId,
-    importancia,
+    importancy: importancia,
     nombre,
-    producto,
-    supermercado,
-    descripccion,
+    product: producto,
+    supermarket: supermercado,
+    description: descripccion,
   } = product;
 
   return (
@@ -72,8 +74,17 @@ function ContentProductCard({
         <section className="flex items-center justify-between pt-1">
           <p>{starsCount(importancia)}</p>
           <p className="flex flex-col items-center text-xs">
-            <span>{hora}</span>
-            <span>{fecha}</span>
+            <span className="flex items-center justify-center gap-x-1">
+              <IconPlusProduct />
+              {formatDate(created_at)}
+            </span>
+
+            {updated_at && (
+              <span className="flex items-center justify-center gap-x-1">
+                <IconEditProduct />
+                {formatDate(updated_at)}
+              </span>
+            )}
           </p>
         </section>
       </article>

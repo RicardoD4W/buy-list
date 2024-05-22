@@ -20,13 +20,13 @@ function ContentEditableProductCard({
   const { userId } = useUserStore((state) => state.user);
 
   const {
-    cantidad,
-    importancia,
+    uds: cantidad,
+    importancy: importancia,
     nombre,
     id,
-    supermercado,
-    producto,
-    descripccion,
+    supermarket: supermercado,
+    product: producto,
+    description: descripccion,
     fecha,
     hora,
   } = product;
@@ -50,16 +50,16 @@ function ContentEditableProductCard({
     setIsok({ producto: true, cantidad: true });
 
     const productUpdated: ItemProduct = {
-      cantidad,
+      uds: cantidad,
       fecha,
       hora,
       id,
-      importancia,
+      importancy: importancia,
       nombre,
-      producto,
-      supermercado,
-      userId,
-      descripccion,
+      product: producto,
+      supermarket: supermercado,
+      user_id: userId,
+      description: descripccion,
     };
 
     modifyOneProductFromOwnRoom(roomUUID, userId, id, productUpdated);
