@@ -1,18 +1,18 @@
 export interface ItemProduct {
   id: number;
-  userId: number;
+  user_id: number;
   nombre: string;
   fecha: string;
-  producto: string;
-  descripccion?: string;
-  cantidad: number;
-  supermercado: (typeof supermercadosValue)[0];
-  hora: `${string}:${string}:${string}`;
-  importancia: number;
+  product: string;
+  description?: string;
+  uds: number;
+  supermarket: (typeof supermercadosValue)[0];
+  created_at: Date;
+  updated_at: Date;
+  importancy: number;
 }
 // TODO Cambiar tipo string a Date en fecha
 // TODO Hacer que el usuario gestione sus propios supermercados
-
 // TODO arreflar esto
 
 export const supermercadosValue = [

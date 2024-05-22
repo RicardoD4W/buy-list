@@ -8,6 +8,8 @@ export const getAllProductsFromOwnRoom = async (
 ) => {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${Bearer}`);
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
+  myHeaders.append("Content-Type", "application/json");
 
   const request = await fetch(`${base_url}/products/${roomUUID}`, {
     method: "GET",
@@ -111,6 +113,8 @@ export const login = async (email: string, password: string) => {
 export const getAllRoomsFromAnUser = async (Bearer: string, userId: number) => {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${Bearer}`);
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
 
   const request = await fetch(`${base_url}/rooms/${userId}`, {
     method: "GET",
