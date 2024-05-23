@@ -13,7 +13,7 @@ interface PreferenceState {
 }
 
 export const usePreferenceStore = create<PreferenceState>()((set) => ({
-  colorTheme: "Negro", // TODO cambiar
+  colorTheme: "Azul",
   setColorTheme: (colorTheme) => set({ colorTheme }),
 
   drawerDirection: DrawerPosition.LEFT,

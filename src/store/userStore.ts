@@ -30,6 +30,7 @@ export interface UserState {
     roomName: string;
     roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
   }) => void;
+  logout: () => void;
 }
 
 export const useUserStore = create<UserState>()(
@@ -48,6 +49,18 @@ export const useUserStore = create<UserState>()(
 
         setUser: (user) => set({ user }),
         setActualRoom: (actualRoom) => set({ actualRoom }),
+        logout: () =>
+          set({
+            user: {
+              name: "",
+              email: "",
+              id: 0,
+              access_token: "",
+              authorized: false,
+            },
+            actualRoom: { roomName: "", roomUUID: undefined },
+            avaliblesRooms: [{ roomName: "", roomUUID: undefined }],
+          }),
       }),
       { name: "user-cache" }
     )

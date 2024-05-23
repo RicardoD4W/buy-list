@@ -1,5 +1,6 @@
 import IconAddProduct from "../icons/IconAddProduct";
 import IconBuyList from "../icons/IconBuyList";
+import IconCloseSession from "../icons/IconCloseSession";
 import IconConfigPreferences from "../icons/IconConfigPreferences";
 import IconMenuOpen from "../icons/IconMenuOpen";
 import IconRoom from "../icons/IconRoom";
@@ -31,26 +32,34 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           </button>
         </header>
 
-        <main className="flex flex-col items-center justify-center pt-2">
-          {roomUUID && (
-            <MenuItem to={`/home/${roomUUID}`}>
-              <IconBuyList /> Lista de la Compra
+        <main className="flex flex-col items-center justify-center ">
+          <nav>
+            {roomUUID && (
+              <MenuItem to={`/home/${roomUUID}`}>
+                <IconBuyList /> Lista de la Compra
+              </MenuItem>
+            )}
+
+            {roomUUID && (
+              <MenuItem to={`/addProduct/${roomUUID}`}>
+                <IconAddProduct /> Añadir Producto
+              </MenuItem>
+            )}
+
+            <MenuItem to={`/rooms/${userId}`}>
+              <IconRoom /> Salas
             </MenuItem>
-          )}
 
-          {roomUUID && (
-            <MenuItem to={`/addProduct/${roomUUID}`}>
-              <IconAddProduct /> Añadir Producto
+            <MenuItem to={`/config/${userId}`}>
+              <IconConfigPreferences /> Configuración
             </MenuItem>
-          )}
+          </nav>
 
-          <MenuItem to={`/rooms/${userId}`}>
-            <IconRoom /> Salas
-          </MenuItem>
-
-          <MenuItem to={`/config/${userId}`}>
-            <IconConfigPreferences /> Configuración
-          </MenuItem>
+          <nav className="relative -bottom-[350px]">
+            <MenuItem to={`/logout`}>
+              <IconCloseSession className="w-9 h-9" /> Cerrar Sesión
+            </MenuItem>
+          </nav>
         </main>
 
         <footer></footer>
