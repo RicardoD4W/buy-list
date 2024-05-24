@@ -29,7 +29,7 @@ export default function MainLayout({ title }: { title: string }) {
   };
 
   return (
-    <div id="main-loyout" className="min-h-screen">
+    <div className="min-h-screen">
       <Header title={title} />
 
       <main
