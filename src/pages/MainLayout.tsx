@@ -29,10 +29,14 @@ export default function MainLayout({ title }: { title: string }) {
   };
 
   return (
-    <div>
+    <div id="main-loyout" className="min-h-screen">
       <Header title={title} />
 
-      <main onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd}>
+      <main
+        className="min-h-screen"
+        onTouchStart={handleOnTouchStart}
+        onTouchEnd={handleOnTouchEnd}
+      >
         <Outlet />
       </main>
     </div>

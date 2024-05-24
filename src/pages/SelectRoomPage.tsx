@@ -6,7 +6,7 @@ import { FetchUserRoom } from "../types/api";
 import { useTheme } from "../hooks/useTheme";
 import { MagnifyingGlass } from "react-loader-spinner";
 
-function SelectRoom() {
+function SelectRoomPage() {
   const { themeState } = useTheme();
   const user = useUserStore((state) => state.user);
   const [userRooms, setUserRooms] = useState<FetchUserRoom>();
@@ -27,10 +27,12 @@ function SelectRoom() {
         <div className="flex flex-col items-center justify-center gap-8 ">
           {userRooms ? (
             userRooms?.user.map((userRomData) => (
-              <RoomDataCard
-                key={userRomData?.id}
-                data={userRomData}
-              ></RoomDataCard>
+              <>
+                <RoomDataCard
+                  key={userRomData?.id}
+                  data={userRomData}
+                ></RoomDataCard>
+              </>
             ))
           ) : (
             <MagnifyingGlass
@@ -50,4 +52,4 @@ function SelectRoom() {
   );
 }
 
-export default SelectRoom;
+export default SelectRoomPage;

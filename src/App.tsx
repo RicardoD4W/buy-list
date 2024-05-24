@@ -3,7 +3,7 @@ import { useTheme } from "./hooks/useTheme";
 import BuyListPage from "./pages/BuyListPage";
 import SecurePage from "./pages/SecurePage";
 import LoginPage from "./pages/LoginPage";
-import SelectRoom from "./pages/SelectRoom";
+import SelectRoomPage from "./pages/SelectRoomPage";
 import MainLayout from "./pages/MainLayout";
 import LogoutPage from "./pages/LogoutPage";
 import ConfigurationPage from "./pages/ConfigurationPage";
@@ -29,7 +29,7 @@ function App() {
         </Route>
 
         <Route element={<MainLayout title="Elegir sala" />}>
-          <Route path="/rooms/:userId" element={<SelectRoom />}></Route>
+          <Route path="/rooms/:userId" element={<SelectRoomPage />}></Route>
         </Route>
 
         <Route element={<MainLayout title="Configuración" />}>

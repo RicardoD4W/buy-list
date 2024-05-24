@@ -63,7 +63,9 @@ function BuyListPage() {
                 />
               </div>
             ) : (
-              <ListProductCard products={products} />
+              <>
+                <ListProductCard products={products} />
+              </>
             )}
           </main>
         </div>

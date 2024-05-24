@@ -17,7 +17,7 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-80 ">
       <ToastContainer />
-      <div className="max-w-sm w-80">
+      <div className="w-full max-w-md px-3">
         <div className={"card" + (isFlipped ? " flipped" : "")}>
           <FrontFlipCardLogin handleFlip={handleFlip} />
           <BackFlipCardLogin handleFlip={handleFlip} />
