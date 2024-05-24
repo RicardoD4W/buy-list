@@ -38,7 +38,7 @@ function BuyListPage() {
           color: themeState.ContentColor,
           backgroundColor: themeState.BackgroundColor,
         }}
-        className="h-full min-h-screen transition-colors"
+        className="h-full transition-colors"
       >
         <div className="flex flex-col items-center w-full">
           <main

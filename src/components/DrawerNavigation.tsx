@@ -5,14 +5,34 @@ import { usePreferenceStore } from "../store/preferencesStore";
 import DrawerNavigationMenu from "./DrawerNavigationMenu";
 import { useTheme } from "../hooks/useTheme";
 import IconMenuClose from "../icons/IconMenuClose";
+import { DrawerPosition } from "../types/store";
 
 const DrawerNavigation = () => {
   const drawerDirection = usePreferenceStore((state) => state.drawerDirection);
   const isDrawerOpen = usePreferenceStore((state) => state.isDrawerOpen);
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
   const { themeState } = useTheme();
-  let touchStart = 0;
-  let touchEnd = 0;
+
+  let touchStartX = 0;
+
+  const handleOnTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX = e.targetTouches[0].pageX;
+  };
+
+  const handleOnTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touchEndX = e.changedTouches[0].pageX;
+
+    const wichDirection: { [key in DrawerPosition]: () => void } = {
+      left: () => {
+        if (touchStartX - 70 > touchEndX) toggleDrawer(false);
+      },
+      right: () => {
+        if (touchStartX + 70 < touchEndX) toggleDrawer(false);
+      },
+    };
+
+    wichDirection[drawerDirection]();
+  };
 
   return (
     <section>
@@ -23,13 +43,7 @@ const DrawerNavigation = () => {
         <IconMenuClose />
       </button>
 
-      <div
-        onTouchStart={(e) => (touchStart = e.targetTouches[0].pageX)}
-        onTouchEnd={(e) => {
-          touchEnd = e.changedTouches[0].pageX;
-          if (touchStart - 70 > touchEnd) toggleDrawer(false);
-        }}
-      >
+      <div onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd}>
         <Drawer
           open={isDrawerOpen}
           onClose={() => toggleDrawer(!isDrawerOpen)}

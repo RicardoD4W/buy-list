@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { type AvalibeColorsTheme, DrawerPosition } from "../types/store";
+import { devtools, persist } from "zustand/middleware";
 
 interface PreferenceState {
   colorTheme: keyof AvalibeColorsTheme;
@@ -12,16 +13,23 @@ interface PreferenceState {
   setAutomaticEmojis: (automaticEmojis: boolean) => void;
 }
 
-export const usePreferenceStore = create<PreferenceState>()((set) => ({
-  colorTheme: "Azul",
-  setColorTheme: (colorTheme) => set({ colorTheme }),
+export const usePreferenceStore = create<PreferenceState>()(
+  devtools(
+    persist(
+      (set) => ({
+        colorTheme: "Azul",
+        setColorTheme: (colorTheme) => set({ colorTheme }),
 
-  drawerDirection: DrawerPosition.LEFT,
-  setDrawerDirection: (drawerDirection) => set({ drawerDirection }),
+        drawerDirection: DrawerPosition.LEFT,
+        setDrawerDirection: (drawerDirection) => set({ drawerDirection }),
 
-  isDrawerOpen: false,
-  toggleDrawer: (isDrawerOpen) => set({ isDrawerOpen }),
+        isDrawerOpen: false,
+        toggleDrawer: (isDrawerOpen) => set({ isDrawerOpen }),
 
-  automaticEmojis: true,
-  setAutomaticEmojis: (automaticEmojis) => set({ automaticEmojis }),
-}));
+        automaticEmojis: true,
+        setAutomaticEmojis: (automaticEmojis) => set({ automaticEmojis }),
+      }),
+      { name: "user-config" }
+    )
+  )
+);
