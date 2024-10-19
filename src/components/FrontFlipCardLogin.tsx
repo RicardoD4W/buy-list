@@ -1,36 +1,13 @@
-import { register } from "../api/api";
 import { useTheme } from "../hooks/useTheme";
-import { useUserStore } from "../store/userStore";
+import { Oval } from "react-loader-spinner";
+import { FrontFlipCardLoginProps } from "../types/props";
 
-function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
+function FrontFlipCardLogin({
+  handleFlip,
+  handleSubmitForm,
+  isLoading,
+}: FrontFlipCardLoginProps) {
   const { themeState } = useTheme();
-  const setUser = useUserStore((state) => state.setUser);
-
-  const handleSubmitForm = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-
-    const formData = new FormData(form);
-    const username = formData.get("frontUsername") + "";
-    const email = formData.get("frontEmail") + "";
-    const password = formData.get("frontPassword") + "";
-    const password_confirm = formData.get("front_password_confirm") + "";
-
-    await register(username, email, password, password_confirm).then(
-      (res): void => {
-        const { user, access_token, errors } = res;
-        if (errors) {
-          console.log();
-          // TODO arreglar
-          return alert(Object.values(errors).map((e) => e + "\n"));
-        }
-
-        setUser({ ...user, access_token });
-        handleFlip();
-        form.reset();
-      }
-    );
-  };
 
   return (
     <>
@@ -109,16 +86,38 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
               />
             </label>
           </div>
-          <button
-            type="submit"
-            className="px-4 py-2 transition-opacity rounded-md hover:opacity-35 active:opacity-75"
-            style={{
-              backgroundColor: themeState.PrimaryIconColor,
-              color: themeState.CardColor,
-            }}
-          >
-            Crear
-          </button>
+
+          {isLoading ? (
+            <div
+              className="flex items-center justify-center px-4 py-2 transition-opacity rounded-md hover:opacity-35 active:opacity-75"
+              style={{
+                backgroundColor: themeState.PrimaryIconColor,
+                color: themeState.CardColor,
+              }}
+            >
+              <Oval
+                visible={true}
+                height="auto"
+                width="24"
+                color={themeState.CardColor}
+                secondaryColor={themeState.PrimaryIconColor}
+                ariaLabel="oval-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            </div>
+          ) : (
+            <button
+              type="submit"
+              className="flex items-center justify-center px-4 py-2 transition-opacity rounded-md hover:opacity-35 active:opacity-75"
+              style={{
+                backgroundColor: themeState.PrimaryIconColor,
+                color: themeState.CardColor,
+              }}
+            >
+              Crear
+            </button>
+          )}
         </form>
         <p
           className="mt-4"
@@ -128,7 +127,7 @@ function FrontFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
         >
           ¿Ya tienes una cuenta?{" "}
           <button onClick={handleFlip} className="text-blue-500">
-            Inicia sesión
+            Inicia sesión{" "}
           </button>
         </p>
       </div>

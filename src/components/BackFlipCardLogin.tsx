@@ -1,33 +1,13 @@
-import { login } from "../api/api";
+import { Oval } from "react-loader-spinner";
 import { useTheme } from "../hooks/useTheme";
-import { useUserStore } from "../store/userStore";
+import { BackFlipCardLoginProps } from "../types/props";
 
-function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
+function BackFlipCardLogin({
+  handleFlip,
+  handleSubmitForm,
+  isLoading,
+}: BackFlipCardLoginProps) {
   const { themeState } = useTheme();
-
-  const setUser = useUserStore((state) => state.setUser);
-
-  const handleSubmitForm = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const form = e.target as HTMLFormElement;
-
-    const formData = new FormData(form);
-    const newUsername = formData.get("back_username") + "";
-    const newPassword = formData.get("back_password") + "";
-
-    await login(newUsername, newPassword).then((res): void => {
-      const { user, access_token, error } = res;
-      if (error) {
-        console.log();
-        // TODO arreglar
-        return alert(error);
-      }
-
-      setUser({ ...user, access_token });
-      form.reset();
-    });
-  };
 
   return (
     <>
@@ -76,16 +56,38 @@ function BackFlipCardLogin({ handleFlip }: { handleFlip: () => void }) {
               />
             </label>
           </div>
-          <button
-            type="submit"
-            className="px-4 py-2 transition-opacity rounded-md hover:opacity-35 active:opacity-75"
-            style={{
-              backgroundColor: themeState.PrimaryIconColor,
-              color: themeState.CardColor,
-            }}
-          >
-            Iniciar sesión
-          </button>
+
+          {isLoading ? (
+            <div
+              className="flex items-center justify-center px-4 py-2 transition-opacity rounded-md hover:opacity-35 active:opacity-75"
+              style={{
+                backgroundColor: themeState.PrimaryIconColor,
+                color: themeState.CardColor,
+              }}
+            >
+              <Oval
+                visible={true}
+                height="auto"
+                width="24"
+                color={themeState.CardColor}
+                secondaryColor={themeState.PrimaryIconColor}
+                ariaLabel="oval-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            </div>
+          ) : (
+            <button
+              type="submit"
+              className="flex items-center justify-center px-4 py-2 transition-opacity rounded-md hover:opacity-35 active:opacity-75"
+              style={{
+                backgroundColor: themeState.PrimaryIconColor,
+                color: themeState.CardColor,
+              }}
+            >
+              Iniciar sesión
+            </button>
+          )}
         </form>
         <p
           className="mt-4"
