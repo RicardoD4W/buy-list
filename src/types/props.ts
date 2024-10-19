@@ -44,6 +44,7 @@ export interface MenuItemProps {
 }
 
 export interface ContentProductCardProps {
+  isLoading: boolean;
   handleClickToggleEditProduct: () =>
     | MouseEventHandler<HTMLButtonElement>
     | undefined;
@@ -70,4 +71,16 @@ export interface RoomDataCardProps {
     user_id: number;
     room_id: string;
   };
+}
+
+export interface BackFlipCardLoginProps {
+  handleFlip: () => void;
+  handleSubmitForm: (e: React.FormEvent) => Promise<void>;
+  isLoading: boolean;
+}
+
+export interface FrontFlipCardLoginProps {
+  handleFlip: () => void;
+  isLoading: boolean;
+  handleSubmitForm: (e: React.FormEvent) => Promise<void>;
 }

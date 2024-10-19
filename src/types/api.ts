@@ -1,14 +1,13 @@
 export interface ItemProduct {
   id: number;
   user_id: number;
-  nombre: string;
-  fecha: string;
+  user_name: string;
   product: string;
   description?: string;
   uds: number;
   supermarket: (typeof supermercadosValue)[0];
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
   importancy: number;
 }
 // TODO Cambiar tipo string a Date en fecha
