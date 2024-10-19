@@ -35,7 +35,7 @@ export const compareForEmojis = (nameProduct: string) => {
   else return product;
 };
 
-export const formatDate = (isoDate: Date): string => {
+export const formatDate = (isoDate: string): string => {
   const date = new Date(isoDate);
 
   const day = String(date.getUTCDate()).padStart(2, "0");
