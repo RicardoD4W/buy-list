@@ -10,9 +10,7 @@ export interface ItemProduct {
   updated_at: string;
   importancy: number;
 }
-// TODO Cambiar tipo string a Date en fecha
 // TODO Hacer que el usuario gestione sus propios supermercados
-// TODO arreflar esto
 
 export const supermercadosValue = [
   "Cualquiera",
