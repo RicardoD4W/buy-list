@@ -23,21 +23,27 @@ export const getAllProductsFromOwnRoom = async (
   return response;
 };
 
-// TODO implements
-export const deleteOneProductFromOwnRoom = (
+export const deleteOneProductFromOwnRoom = async (
+  Bearer: string,
   userId: number,
   productId: number,
   roomUUID: `${string}-${string}-${string}-${string}-${string}`
 ) => {
-  console.log(
-    "User: ",
-    userId,
-    "productId: ",
-    productId,
-    "roomUUID: ",
-    roomUUID
-  );
-  console.log("Deleting...");
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${Bearer}`);
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
+  myHeaders.append("Content-Type", "application/json");
+
+  const request = await fetch(`${base_url}/delete/product/${productId}`, {
+    method: "DELETE",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+
+  if (!request.ok) throw new Error("Error en la petición");
+
+  const response = await request.json();
+  return response;
 };
 
 // TODO implements
@@ -46,17 +52,40 @@ export const deleteAllProductFromOwnRoom = (
   userId: number
 ) => {};
 
-// TODO implements
-export const modifyOneProductFromOwnRoom = (
+export const modifyOneProductFromOwnRoom = async (
+  Bearer: string,
   roomUUID: `${string}-${string}-${string}-${string}-${string}`,
   userId: number,
-  productId: number,
   newProduct: ItemProduct
 ) => {
-  console.log(roomUUID);
-  console.log(userId);
-  console.log(productId);
-  console.log(newProduct);
+  const myHeaders = new Headers();
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${Bearer}`);
+
+  const raw = JSON.stringify({
+    "user_id": userId,
+    "room_id": roomUUID,
+    "product": newProduct.product,
+    "supermarket": newProduct.supermarket,
+    "description": newProduct.description,
+    "uds": newProduct.uds,
+    "importancy": newProduct.importancy,
+  });
+
+  const requestOptions = {
+    method: "PATCH",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  const request = await fetch(
+    `${base_url}/edit/product/${newProduct.id}`,
+    requestOptions
+  );
+  const response = await request.json();
+
+  return response;
 };
 
 export const register = async (
