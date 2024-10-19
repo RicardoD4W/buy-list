@@ -17,13 +17,19 @@ function BuyListPage() {
   const setProducts = useBuyListStore((state) => state.setProducts);
   const user = useUserStore((state) => state.user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const fetchProductsData = async () => {
     if (roomUUID === undefined) return;
     setIsLoading(true);
-    await getAllProductsFromOwnRoom(roomUUID, user.access_token).then((res) => {
-      setProducts(res.products);
-    });
+    await getAllProductsFromOwnRoom(roomUUID, user.access_token)
+      .then((res) => {
+        setProducts(res.products);
+      })
+      .catch(() => {
+        setIsError(true);
+        setIsLoading(false);
+      });
     setIsLoading(false);
   };
 
@@ -49,7 +55,7 @@ function BuyListPage() {
           >
             <SearchEngine theme={themeState} products={products} />
 
-            {isLoading ? (
+            {isLoading && (
               <div className="flex items-center justify-center">
                 <MagnifyingGlass
                   visible={true}
@@ -62,7 +68,10 @@ function BuyListPage() {
                   color="#e15b64"
                 />
               </div>
-            ) : (
+            )}
+            {isError && <p>Error</p>}
+
+            {products && (
               <>
                 <ListProductCard products={products} />
               </>
