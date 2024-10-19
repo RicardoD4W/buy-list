@@ -8,27 +8,39 @@ import {
   supermercadosValue,
 } from "../types/api";
 import { ContenEditabletProductCardProps } from "../types/props";
+import { formatDate } from "../helpers/functions";
+import IconPlusProduct from "../icons/IconPlusProduct";
+import { Oval } from "react-loader-spinner";
+import { Bounce, toast } from "react-toastify";
+
+const toastStyle = {
+  pending: { backgroundColor: "#ffff8c", color: "black", fontWeight: "bold" },
+  success: { backgroundColor: "#8cff8c", color: "black", fontWeight: "bold" },
+  error: { backgroundColor: "#ff8c8c", color: "black", fontWeight: "bold" },
+};
 
 function ContentEditableProductCard({
   product,
   exitEditMode,
 }: ContenEditabletProductCardProps) {
   const [isOk, setIsok] = useState({ cantidad: true, producto: true });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { themeState } = useTheme();
   const { roomUUID } = useUserStore((state) => state.actualRoom);
-  const { userId } = useUserStore((state) => state.user);
+  const { access_token } = useUserStore((state) => state.user);
+
+  const { id: userId } = useUserStore((state) => state.user);
 
   const {
     uds: cantidad,
     importancy: importancia,
-    nombre,
+    user_name: name,
     id,
     supermarket: supermercado,
     product: producto,
     description: descripccion,
-    fecha,
-    hora,
+    created_at,
   } = product;
 
   const handleChangeProductOnSubmit = (e: React.FormEvent) => {
@@ -51,18 +63,55 @@ function ContentEditableProductCard({
 
     const productUpdated: ItemProduct = {
       uds: cantidad,
-      fecha,
-      hora,
       id,
       importancy: importancia,
-      nombre,
+      user_name: name,
       product: producto,
       supermarket: supermercado,
       user_id: userId,
       description: descripccion,
+      created_at,
+      updated_at: new Date().toISOString(),
     };
 
-    modifyOneProductFromOwnRoom(roomUUID, userId, id, productUpdated);
+    setIsLoading(true);
+    toast
+      .promise(
+        modifyOneProductFromOwnRoom(
+          access_token,
+          roomUUID,
+          userId,
+          productUpdated
+        ),
+        {
+          pending: {
+            render: "Editando producto...",
+            className: "pending-toast",
+            style: toastStyle.pending,
+          },
+          success: {
+            render: "Producto editado 📝",
+            className: "success-toast",
+            style: toastStyle.success,
+          },
+          error: {
+            render: "Algo salió mal 😱",
+            className: "error-toast",
+            style: toastStyle.error,
+          },
+        },
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+          transition: Bounce,
+        }
+      )
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -73,9 +122,12 @@ function ContentEditableProductCard({
       >
         <div>
           <section className="flex justify-between">
-            <span>{hora}</span>
-            <span>{nombre}</span>
-            <span>{fecha}</span>
+            <span>{name}</span>
+            <span className="flex items-center justify-center text-xs">
+              {" "}
+              <IconPlusProduct />
+              {formatDate(created_at)}
+            </span>
           </section>
           <hr
             className="w-full mt-1 border-t-[1px] "
@@ -191,15 +243,35 @@ function ContentEditableProductCard({
             >
               Cancelar
             </button>
-            <button
-              type="submit"
-              style={{
-                backgroundColor: themeState.PrimaryIconColor,
-              }}
-              className="p-1 font-semibold text-white rounded-md hover:opacity-35 active:opacity-75"
-            >
-              Guardar
-            </button>
+            {isLoading ? (
+              <div
+                style={{
+                  backgroundColor: themeState.PrimaryIconColor,
+                }}
+                className="flex items-center justify-center w-20 font-semibold text-white rounded-md hover:opacity-35 active:opacity-75"
+              >
+                <Oval
+                  visible={true}
+                  height="auto"
+                  width="24"
+                  color="white"
+                  secondaryColor={themeState.SecondaryIconColor}
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: themeState.PrimaryIconColor,
+                }}
+                className="w-20 p-1 font-semibold text-white rounded-md hover:opacity-35 active:opacity-75"
+              >
+                Guardar
+              </button>
+            )}
           </div>
         </form>
       </article>

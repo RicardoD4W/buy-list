@@ -1,3 +1,4 @@
+import { Oval } from "react-loader-spinner";
 import { compareForEmojis, formatDate, starsCount } from "../helpers/functions";
 import { useTheme } from "../hooks/useTheme";
 import IconDelete from "../icons/IconDelete";
@@ -9,6 +10,7 @@ import { useUserStore } from "../store/userStore";
 import { ContentProductCardProps } from "../types/props";
 
 function ContentProductCard({
+  isLoading,
   handleClickToggleEditProduct,
   handleClickDeleteProduct,
   product,
@@ -24,7 +26,7 @@ function ContentProductCard({
     updated_at,
     id: productId,
     importancy: importancia,
-    nombre,
+    user_name: name,
     product: producto,
     supermarket: supermercado,
     description: descripccion,
@@ -41,12 +43,25 @@ function ContentProductCard({
             <button onClick={handleClickToggleEditProduct()}>
               <IconEdit color={themeState.PrimaryIconColor} />
             </button>
-            <span>{nombre}</span>
-            <button
-              onClick={handleClickDeleteProduct(productId, userId, roomUUID)}
-            >
-              <IconDelete color={themeState.SecondaryIconColor} />
-            </button>
+            <span>{name}</span>
+            {isLoading ? (
+              <Oval
+                visible={true}
+                height="auto"
+                width="24"
+                color={themeState.SecondaryIconColor}
+                secondaryColor={themeState.CardColor}
+                ariaLabel="oval-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            ) : (
+              <button
+                onClick={handleClickDeleteProduct(productId, userId, roomUUID)}
+              >
+                <IconDelete color={themeState.SecondaryIconColor} />
+              </button>
+            )}
           </section>
           <hr
             className="w-full mt-1 border-t-[1px] "
