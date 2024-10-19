@@ -20,7 +20,7 @@ export default function RoomDataCard({ data }: { data: RoomDataCardProps }) {
     <>
       <div
         onClick={handleChooseActualRoom}
-        className="w-[90%] shadow-sm p-3 mx-3 overflow-auto text-center break-all rounded overflow-x"
+        className="w-[90%] shadow-sm p-3 mx-3 overflow-auto text-center break-all rounded overflow-x cursor-pointer"
         style={{
           backgroundColor: themeState.CardColor,
           boxShadow: `0 0 5px ${themeState.ContentColor}`,
