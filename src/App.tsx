@@ -8,9 +8,15 @@ import MainLayout from "./pages/MainLayout";
 import LogoutPage from "./pages/LogoutPage";
 import ConfigurationPage from "./pages/ConfigurationPage";
 import AddProductPage from "./pages/AddProductPage";
+import { useEffect } from "react";
+import { changeBackgroundColor } from "./helpers/functions";
 
 function App() {
   const { themeState } = useTheme();
+
+  useEffect(() => {
+    changeBackgroundColor(themeState.BackgroundColor);
+  }, [themeState]);
 
   return (
     <div

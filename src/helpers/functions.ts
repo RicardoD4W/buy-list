@@ -48,3 +48,7 @@ export const formatDate = (isoDate: string): string => {
 
   return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
 };
+
+export const changeBackgroundColor = (color) => {
+  document.body.style.backgroundColor = color;
+};
