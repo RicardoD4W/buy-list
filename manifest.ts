@@ -6,7 +6,7 @@ export const manifest: Partial<ManifestOptions> = {
   description: "Site for having a  buy-list",
   theme_color: "#2C3E50",
   background_color: "#F8F8F0",
-  display: "standalone",
+  display: "fullscreen",
   lang: "es",
   icons: [
     {
