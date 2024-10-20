@@ -7,6 +7,7 @@ import SelectRoomPage from "./pages/SelectRoomPage";
 import MainLayout from "./pages/MainLayout";
 import LogoutPage from "./pages/LogoutPage";
 import ConfigurationPage from "./pages/ConfigurationPage";
+import AddProductPage from "./pages/AddProductPage";
 
 function App() {
   const { themeState } = useTheme();
@@ -25,7 +26,10 @@ function App() {
           <Route path="/home/:roomUUID" element={<BuyListPage />}></Route>
         </Route>
         <Route element={<MainLayout title="Añadir producto" />}>
-          <Route path="/addProduct/:userId" element={<>coming soon</>}></Route>
+          <Route
+            path="/addProduct/:userId"
+            element={<AddProductPage />}
+          ></Route>
         </Route>
 
         <Route element={<MainLayout title="Elegir sala" />}>

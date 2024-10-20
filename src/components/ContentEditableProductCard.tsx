@@ -13,15 +13,10 @@ import IconPlusProduct from "../icons/IconPlusProduct";
 import { Oval } from "react-loader-spinner";
 import { Bounce, toast } from "react-toastify";
 
-const toastStyle = {
-  pending: { backgroundColor: "#ffff8c", color: "black", fontWeight: "bold" },
-  success: { backgroundColor: "#8cff8c", color: "black", fontWeight: "bold" },
-  error: { backgroundColor: "#ff8c8c", color: "black", fontWeight: "bold" },
-};
-
 function ContentEditableProductCard({
   product,
   exitEditMode,
+  toastStyle,
 }: ContenEditabletProductCardProps) {
   const [isOk, setIsok] = useState({ cantidad: true, producto: true });
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -45,6 +40,9 @@ function ContentEditableProductCard({
 
   const handleChangeProductOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!roomUUID) return;
+
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -102,7 +100,7 @@ function ContentEditableProductCard({
         },
         {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

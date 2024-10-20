@@ -44,21 +44,49 @@ export interface MenuItemProps {
 }
 
 export interface ContentProductCardProps {
-  isLoading: boolean;
   handleClickToggleEditProduct: () =>
     | MouseEventHandler<HTMLButtonElement>
     | undefined;
-  handleClickDeleteProduct: (
-    productId: number,
-    userId: number,
-    roomUUID: `${string}-${string}-${string}-${string}-${string}`
-  ) => MouseEventHandler<HTMLButtonElement> | undefined;
+  toastStyle: {
+    pending: {
+      backgroundColor: string;
+      color: string;
+      fontWeight: string;
+    };
+    success: {
+      backgroundColor: string;
+      color: string;
+      fontWeight: string;
+    };
+    error: {
+      backgroundColor: string;
+      color: string;
+      fontWeight: string;
+    };
+  };
   product: ItemProduct;
 }
 
 export interface ContenEditabletProductCardProps {
   product: ItemProduct;
   exitEditMode: () => MouseEventHandler<HTMLButtonElement> | undefined;
+  toastStyle: {
+    pending: {
+      backgroundColor: string;
+      color: string;
+      fontWeight: string;
+    };
+    success: {
+      backgroundColor: string;
+      color: string;
+      fontWeight: string;
+    };
+    error: {
+      backgroundColor: string;
+      color: string;
+      fontWeight: string;
+    };
+  };
 }
 
 export interface RoomDataCardProps {

@@ -88,6 +88,39 @@ export const modifyOneProductFromOwnRoom = async (
   return response;
 };
 
+export const createOneProductFromOwnRoom = async (
+  Bearer: string,
+  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
+  userId: number,
+  newProduct: ItemProduct
+) => {
+  const myHeaders = new Headers();
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${Bearer}`);
+
+  const raw = JSON.stringify({
+    "user_id": userId,
+    "room_id": roomUUID,
+    "product": newProduct.product,
+    "supermarket": newProduct.supermarket,
+    "description": newProduct.description,
+    "uds": newProduct.uds,
+    "importancy": newProduct.importancy,
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  const request = await fetch(`${base_url}/create/product`, requestOptions);
+  const response = await request.json();
+
+  return response;
+};
+
 export const register = async (
   username: string,
   email: string,

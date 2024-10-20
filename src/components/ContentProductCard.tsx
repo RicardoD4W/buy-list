@@ -8,17 +8,21 @@ import IconPlusProduct from "../icons/IconPlusProduct";
 import { usePreferenceStore } from "../store/preferencesStore";
 import { useUserStore } from "../store/userStore";
 import { ContentProductCardProps } from "../types/props";
+import { useState } from "react";
+import { Bounce, toast } from "react-toastify";
+import { deleteOneProductFromOwnRoom } from "../api/api";
 
 function ContentProductCard({
-  isLoading,
   handleClickToggleEditProduct,
-  handleClickDeleteProduct,
   product,
+  toastStyle,
 }: ContentProductCardProps) {
   const { themeState } = useTheme();
   const { roomUUID } = useUserStore((state) => state.actualRoom);
   const { id: userId } = useUserStore((state) => state.user);
   const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
+  const { access_token } = useUserStore((state) => state.user);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     uds: cantidad,
@@ -31,6 +35,46 @@ function ContentProductCard({
     supermarket: supermercado,
     description: descripccion,
   } = product;
+
+  const handleClickDeleteProduct = (
+    productId: number,
+    userId: number,
+    roomUUID: `${string}-${string}-${string}-${string}-${string}`
+  ) => {
+    setIsLoading(true);
+    toast
+      .promise(
+        deleteOneProductFromOwnRoom(access_token, userId, productId, roomUUID),
+        {
+          pending: {
+            render: "Eliminando producto...",
+            className: "pending-toast",
+            style: toastStyle.pending,
+          },
+          success: {
+            render: "Producto eliminado 🗑️",
+            className: "success-toast",
+            style: toastStyle.success,
+          },
+          error: {
+            render: "Algo salió mal 😱",
+            className: "error-toast",
+            style: toastStyle.error,
+          },
+        },
+        {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+          transition: Bounce,
+        }
+      )
+      .finally(() => setIsLoading(false));
+  };
 
   return (
     <>
@@ -57,7 +101,10 @@ function ContentProductCard({
               />
             ) : (
               <button
-                onClick={handleClickDeleteProduct(productId, userId, roomUUID)}
+                onClick={() => {
+                  if (!roomUUID) return;
+                  handleClickDeleteProduct(productId, userId, roomUUID);
+                }}
               >
                 <IconDelete color={themeState.SecondaryIconColor} />
               </button>
