@@ -41,6 +41,8 @@ function BuyListPage() {
     fetchProductsData();
   }, [roomUUID]);
 
+  Pusher.logToConsole = true;
+
   useEffect(() => {
     const pusher = new Pusher(PUSHER_KEY, {
       cluster: "eu",
@@ -52,6 +54,7 @@ function BuyListPage() {
       "App\\Events\\ProductEvent",
       async () => await fetchProductsData()
     );
+    channel.bind("ProductEvent", async () => await fetchProductsData());
 
     return () => {
       channel.unbind_all();
