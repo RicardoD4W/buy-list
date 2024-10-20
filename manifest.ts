@@ -4,9 +4,9 @@ export const manifest: Partial<ManifestOptions> = {
   name: "to-buy-list",
   short_name: "TBL",
   description: "Site for having a  buy-list",
-  theme_color: "#2C3E50",
-  background_color: "#F8F8F0",
-  display: "minimal-ui",
+  theme_color: "#F8F8F0",
+  background_color: "#2C3E50",
+  display: "standalone",
   lang: "es",
   icons: [
     {
