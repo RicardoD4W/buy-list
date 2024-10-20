@@ -94,7 +94,7 @@ function BuyListPage() {
             )}
             {isError && <p>Error</p>}
 
-            {products && (
+            {!isLoading && products && (
               <>
                 <ListProductCard products={products} />
               </>
