@@ -11,6 +11,8 @@ interface PreferenceState {
   toggleDrawer: (isDrawerOpen: boolean) => void;
   automaticEmojis: boolean;
   setAutomaticEmojis: (automaticEmojis: boolean) => void;
+  notifications: boolean;
+  setNotifications: (notifications: boolean) => void;
 }
 
 export const usePreferenceStore = create<PreferenceState>()(
@@ -28,6 +30,9 @@ export const usePreferenceStore = create<PreferenceState>()(
 
         automaticEmojis: true,
         setAutomaticEmojis: (automaticEmojis) => set({ automaticEmojis }),
+
+        notifications: true,
+        setNotifications: (notifications) => set({ notifications }),
       }),
       { name: "user-config" }
     )

@@ -118,7 +118,6 @@ const LoginPage = () => {
           },
           error: {
             render: ({ data }) => {
-              // Muestra el error específico si existe
               const errorMessage = data?.message || "Error en el registro 😱";
               return `Error: ${errorMessage}`;
             },

@@ -69,7 +69,7 @@ export interface ContentProductCardProps {
 
 export interface ContenEditabletProductCardProps {
   product: ItemProduct;
-  exitEditMode: () => MouseEventHandler<HTMLButtonElement> | undefined;
+  exitEditMode: () => () => void;
   toastStyle: {
     pending: {
       backgroundColor: string;

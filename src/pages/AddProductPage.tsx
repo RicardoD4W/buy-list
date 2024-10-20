@@ -9,6 +9,7 @@ import { Oval } from "react-loader-spinner";
 import { useUserStore } from "../store/userStore";
 import { createOneProductFromOwnRoom } from "../api/api";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import { usePreferenceStore } from "../store/preferencesStore";
 
 const toastStyle = {
   pending: { backgroundColor: "#ffff8c", color: "black", fontWeight: "bold" },
@@ -23,6 +24,8 @@ function AddProductPage() {
   const { id: userId } = useUserStore((state) => state.user);
   const { access_token } = useUserStore((state) => state.user);
   const { roomUUID } = useUserStore((state) => state.actualRoom);
+  const notifications = usePreferenceStore((state) => state.notifications);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleCleanClick = (e: React.FormEvent) => {
@@ -60,44 +63,53 @@ function AddProductPage() {
     };
 
     setIsLoading(true);
-    toast
-      .promise(
-        createOneProductFromOwnRoom(
+    notifications
+      ? toast
+          .promise(
+            createOneProductFromOwnRoom(
+              access_token,
+              roomUUID,
+              userId,
+              productToAdd
+            ),
+            {
+              pending: {
+                render: "Creando producto...",
+                className: "pending-toast",
+                style: toastStyle.pending,
+              },
+              success: {
+                render: "Producto creado ✨",
+                className: "success-toast",
+                style: toastStyle.success,
+              },
+              error: {
+                render: "Algo salió mal 😱",
+                className: "error-toast",
+                style: toastStyle.error,
+              },
+            },
+            {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "dark",
+              transition: Bounce,
+            }
+          )
+          .then(() => formRef.current?.reset())
+          .finally(() => setIsLoading(false))
+      : createOneProductFromOwnRoom(
           access_token,
           roomUUID,
           userId,
           productToAdd
-        ),
-        {
-          pending: {
-            render: "Creando producto...",
-            className: "pending-toast",
-            style: toastStyle.pending,
-          },
-          success: {
-            render: "Producto creado ✨",
-            className: "success-toast",
-            style: toastStyle.success,
-          },
-          error: {
-            render: "Algo salió mal 😱",
-            className: "error-toast",
-            style: toastStyle.error,
-          },
-        },
-        {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-          transition: Bounce,
-        }
-      )
-      .then(() => formRef.current?.reset())
-      .finally(() => setIsLoading(false));
+        )
+          .then(() => formRef.current?.reset())
+          .finally(() => setIsLoading(false));
   };
 
   return (
@@ -208,7 +220,7 @@ function AddProductPage() {
             </label>
 
             <div className="flex justify-between mt-5 mb-1">
-              <button
+              <span
                 onClick={handleCleanClick}
                 style={{
                   backgroundColor: themeState.SecondaryIconColor,
@@ -216,7 +228,7 @@ function AddProductPage() {
                 className="p-1 font-semibold text-white rounded-md hover:opacity-35 active:opacity-75"
               >
                 Limpiar
-              </button>
+              </span>
               {isLoading ? (
                 <div
                   style={{

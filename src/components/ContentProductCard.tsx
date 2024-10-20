@@ -21,6 +21,8 @@ function ContentProductCard({
   const { roomUUID } = useUserStore((state) => state.actualRoom);
   const { id: userId } = useUserStore((state) => state.user);
   const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
+  const notifications = usePreferenceStore((state) => state.notifications);
+
   const { access_token } = useUserStore((state) => state.user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -42,38 +44,51 @@ function ContentProductCard({
     roomUUID: `${string}-${string}-${string}-${string}-${string}`
   ) => {
     setIsLoading(true);
-    toast
-      .promise(
-        deleteOneProductFromOwnRoom(access_token, userId, productId, roomUUID),
-        {
-          pending: {
-            render: "Eliminando producto...",
-            className: "pending-toast",
-            style: toastStyle.pending,
-          },
-          success: {
-            render: "Producto eliminado 🗑️",
-            className: "success-toast",
-            style: toastStyle.success,
-          },
-          error: {
-            render: "Algo salió mal 😱",
-            className: "error-toast",
-            style: toastStyle.error,
-          },
-        },
-        {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-          transition: Bounce,
-        }
-      )
-      .finally(() => setIsLoading(false));
+
+    notifications
+      ? toast
+          .promise(
+            deleteOneProductFromOwnRoom(
+              access_token,
+              userId,
+              productId,
+              roomUUID
+            ),
+            {
+              pending: {
+                render: "Eliminando producto...",
+                className: "pending-toast",
+                style: toastStyle.pending,
+              },
+              success: {
+                render: "Producto eliminado 🗑️",
+                className: "success-toast",
+                style: toastStyle.success,
+              },
+              error: {
+                render: "Algo salió mal 😱",
+                className: "error-toast",
+                style: toastStyle.error,
+              },
+            },
+            {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "dark",
+              transition: Bounce,
+            }
+          )
+          .finally(() => setIsLoading(false))
+      : deleteOneProductFromOwnRoom(
+          access_token,
+          userId,
+          productId,
+          roomUUID
+        ).finally(() => setIsLoading(false));
   };
 
   return (

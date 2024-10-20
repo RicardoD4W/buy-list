@@ -12,6 +12,7 @@ import { formatDate } from "../helpers/functions";
 import IconPlusProduct from "../icons/IconPlusProduct";
 import { Oval } from "react-loader-spinner";
 import { Bounce, toast } from "react-toastify";
+import { usePreferenceStore } from "../store/preferencesStore";
 
 function ContentEditableProductCard({
   product,
@@ -24,6 +25,7 @@ function ContentEditableProductCard({
   const { themeState } = useTheme();
   const { roomUUID } = useUserStore((state) => state.actualRoom);
   const { access_token } = useUserStore((state) => state.user);
+  const notifications = usePreferenceStore((state) => state.notifications);
 
   const { id: userId } = useUserStore((state) => state.user);
 
@@ -72,44 +74,53 @@ function ContentEditableProductCard({
       updated_at: new Date().toISOString(),
     };
 
+    exitEditMode()();
+
     setIsLoading(true);
-    toast
-      .promise(
-        modifyOneProductFromOwnRoom(
+    notifications
+      ? toast
+          .promise(
+            modifyOneProductFromOwnRoom(
+              access_token,
+              roomUUID,
+              userId,
+              productUpdated
+            ),
+            {
+              pending: {
+                render: "Editando producto...",
+                className: "pending-toast",
+                style: toastStyle.pending,
+              },
+              success: {
+                render: "Producto editado 📝",
+                className: "success-toast",
+                style: toastStyle.success,
+              },
+              error: {
+                render: "Algo salió mal 😱",
+                className: "error-toast",
+                style: toastStyle.error,
+              },
+            },
+            {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "dark",
+              transition: Bounce,
+            }
+          )
+          .finally(() => setIsLoading(false))
+      : modifyOneProductFromOwnRoom(
           access_token,
           roomUUID,
           userId,
           productUpdated
-        ),
-        {
-          pending: {
-            render: "Editando producto...",
-            className: "pending-toast",
-            style: toastStyle.pending,
-          },
-          success: {
-            render: "Producto editado 📝",
-            className: "success-toast",
-            style: toastStyle.success,
-          },
-          error: {
-            render: "Algo salió mal 😱",
-            className: "error-toast",
-            style: toastStyle.error,
-          },
-        },
-        {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-          transition: Bounce,
-        }
-      )
-      .finally(() => setIsLoading(false));
+        ).finally(() => setIsLoading(false));
   };
 
   return (
@@ -232,7 +243,7 @@ function ContentEditableProductCard({
           </label>
 
           <div className="flex justify-between mt-5 mb-1">
-            <button
+            <span
               onClick={exitEditMode()}
               style={{
                 backgroundColor: themeState.SecondaryIconColor,
@@ -240,7 +251,7 @@ function ContentEditableProductCard({
               className="p-1 font-semibold text-white rounded-md hover:opacity-35 active:opacity-75"
             >
               Cancelar
-            </button>
+            </span>
             {isLoading ? (
               <div
                 style={{

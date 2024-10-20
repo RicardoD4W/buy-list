@@ -2,7 +2,6 @@ import { useState } from "react";
 import { type ProductCardProps } from "../types/props";
 import ContentProductCard from "./ContentProductCard";
 import ContentEditableProductCard from "./ContentEditableProductCard";
-import { ToastContainer } from "react-toastify";
 
 const toastStyle = {
   pending: { backgroundColor: "#ffff8c", color: "black", fontWeight: "bold" },
@@ -19,7 +18,6 @@ function ProductCard({ product }: ProductCardProps) {
 
   return (
     <>
-      <ToastContainer />
       {isEditing ? (
         <ContentEditableProductCard
           toastStyle={toastStyle}

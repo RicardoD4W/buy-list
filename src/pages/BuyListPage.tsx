@@ -7,6 +7,10 @@ import { useEffect, useState } from "react";
 import { getAllProductsFromOwnRoom } from "../api/api";
 import { useUserStore } from "../store/userStore";
 import { MagnifyingGlass } from "react-loader-spinner";
+import Pusher from "pusher-js";
+import { ToastContainer } from "react-toastify";
+
+const PUSHER_KEY = import.meta.env.VITE_PUSHER_KEY;
 
 function BuyListPage() {
   useRedirect();
@@ -37,8 +41,27 @@ function BuyListPage() {
     fetchProductsData();
   }, [roomUUID]);
 
+  useEffect(() => {
+    const pusher = new Pusher(PUSHER_KEY, {
+      cluster: "eu",
+    });
+
+    const channel = pusher.subscribe(`room.${roomUUID}`);
+
+    channel.bind(
+      "App\\Events\\ProductEvent",
+      async () => await fetchProductsData()
+    );
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [roomUUID]);
+
   return (
     <>
+      <ToastContainer />
       <div
         style={{
           color: themeState.ContentColor,

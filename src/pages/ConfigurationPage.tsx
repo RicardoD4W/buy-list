@@ -11,6 +11,8 @@ function ConfigurationPage() {
     drawerDirection,
     colorTheme,
     setColorTheme,
+    notifications,
+    setNotifications,
   } = usePreferenceStore();
   const { themeState } = useTheme();
 
@@ -28,6 +30,11 @@ function ConfigurationPage() {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDrawerDirection(e.currentTarget.value as DrawerPosition);
+  };
+  const handleChangeNotifications = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNotifications(e.target.checked);
   };
 
   return (
@@ -200,6 +207,17 @@ function ConfigurationPage() {
               name="autoemojis"
               onChange={handleChangeAutoEmoji}
               checked={automaticEmojis}
+              className="w-5 h-5"
+              style={{ accentColor: themeState.HeaderColor }}
+            />
+          </label>
+          <label className="flex items-center justify-center m-2 gap-x-2">
+            <h2 className="italic">Notificaciones en tiras</h2>
+            <input
+              type="checkbox"
+              name="notifications"
+              onChange={handleChangeNotifications}
+              checked={notifications}
               className="w-5 h-5"
               style={{ accentColor: themeState.HeaderColor }}
             />
