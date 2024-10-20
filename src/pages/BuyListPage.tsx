@@ -41,8 +41,6 @@ function BuyListPage() {
     fetchProductsData();
   }, [roomUUID]);
 
-  Pusher.logToConsole = true;
-
   useEffect(() => {
     const pusher = new Pusher(PUSHER_KEY, {
       cluster: "eu",
