@@ -90,11 +90,11 @@ export interface ContenEditabletProductCardProps {
 }
 
 export interface RoomDataCardProps {
-  id: `${string}-${string}-${string}-${string}-${string}` | undefined;
+  id: string;
   name: string;
   description: string;
-  created_at: Date | null;
-  updated_at: Date | null;
+  created_at: string;
+  updated_at: string;
   pivot: {
     user_id: number;
     room_id: string;

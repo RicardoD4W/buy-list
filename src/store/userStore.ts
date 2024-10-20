@@ -11,12 +11,12 @@ export interface UserState {
   };
   actualRoom: {
     roomName: string;
-    roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
+    roomUUID: string | undefined;
   };
   avaliblesRooms: [
     {
       roomName: string;
-      roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
+      roomUUID: string | undefined;
     }
   ];
   setUser: (user: {
@@ -28,7 +28,7 @@ export interface UserState {
   }) => void;
   setActualRoom: (actualRoom: {
     roomName: string;
-    roomUUID: `${string}-${string}-${string}-${string}-${string}` | undefined;
+    roomUUID: string | undefined;
   }) => void;
   logout: () => void;
 }

@@ -19,7 +19,6 @@ function ContentProductCard({
 }: ContentProductCardProps) {
   const { themeState } = useTheme();
   const { roomUUID } = useUserStore((state) => state.actualRoom);
-  const { id: userId } = useUserStore((state) => state.user);
   const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
   const notifications = usePreferenceStore((state) => state.notifications);
 
@@ -38,22 +37,13 @@ function ContentProductCard({
     description: descripccion,
   } = product;
 
-  const handleClickDeleteProduct = (
-    productId: number,
-    userId: number,
-    roomUUID: `${string}-${string}-${string}-${string}-${string}`
-  ) => {
+  const handleClickDeleteProduct = (productId: number) => {
     setIsLoading(true);
 
     notifications
       ? toast
           .promise(
-            deleteOneProductFromOwnRoom(
-              access_token,
-              userId,
-              productId,
-              roomUUID
-            ),
+            deleteOneProductFromOwnRoom(access_token, productId),
             {
               pending: {
                 render: "Eliminando producto...",
@@ -83,12 +73,9 @@ function ContentProductCard({
             }
           )
           .finally(() => setIsLoading(false))
-      : deleteOneProductFromOwnRoom(
-          access_token,
-          userId,
-          productId,
-          roomUUID
-        ).finally(() => setIsLoading(false));
+      : deleteOneProductFromOwnRoom(access_token, productId).finally(() =>
+          setIsLoading(false)
+        );
   };
 
   return (
@@ -118,7 +105,7 @@ function ContentProductCard({
               <button
                 onClick={() => {
                   if (!roomUUID) return;
-                  handleClickDeleteProduct(productId, userId, roomUUID);
+                  handleClickDeleteProduct(productId);
                 }}
               >
                 <IconDelete color={themeState.SecondaryIconColor} />

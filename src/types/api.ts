@@ -35,14 +35,16 @@ export const importanciaValue = [
 
 export interface FetchUserRoom {
   user: [
-    id: string,
-    name: string,
-    description: string,
-    created_at: Date | null,
-    updated_at: Date | null,
-    pivot: {
-      user_id: number;
-      room_id: string;
+    {
+      id: string;
+      name: string;
+      description: string;
+      created_at: string;
+      updated_at: string;
+      pivot: {
+        user_id: number;
+        room_id: string;
+      };
     }
   ];
 }

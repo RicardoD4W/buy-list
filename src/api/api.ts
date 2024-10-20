@@ -3,7 +3,7 @@ import { type ItemProduct } from "../types/api";
 const base_url = import.meta.env.VITE_BASE_URL;
 
 export const getAllProductsFromOwnRoom = async (
-  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
+  roomUUID: string,
   Bearer: string
 ) => {
   const myHeaders = new Headers();
@@ -25,9 +25,7 @@ export const getAllProductsFromOwnRoom = async (
 
 export const deleteOneProductFromOwnRoom = async (
   Bearer: string,
-  userId: number,
-  productId: number,
-  roomUUID: `${string}-${string}-${string}-${string}-${string}`
+  productId: number
 ) => {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${Bearer}`);
@@ -47,14 +45,11 @@ export const deleteOneProductFromOwnRoom = async (
 };
 
 // TODO implements
-export const deleteAllProductFromOwnRoom = (
-  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
-  userId: number
-) => {};
+export const deleteAllProductFromOwnRoom = () => {};
 
 export const modifyOneProductFromOwnRoom = async (
   Bearer: string,
-  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
+  roomUUID: string,
   userId: number,
   newProduct: ItemProduct
 ) => {
@@ -90,9 +85,9 @@ export const modifyOneProductFromOwnRoom = async (
 
 export const createOneProductFromOwnRoom = async (
   Bearer: string,
-  roomUUID: `${string}-${string}-${string}-${string}-${string}`,
+  roomUUID: string,
   userId: number,
-  newProduct: ItemProduct
+  newProduct: Partial<ItemProduct>
 ) => {
   const myHeaders = new Headers();
   myHeaders.append("X-Requested-With", "XMLHttpRequest");

@@ -25,11 +25,11 @@ function SelectRoomPage() {
         className="flex flex-col items-center justify-center pt-12"
       >
         <div className="flex flex-col items-center justify-center gap-8 ">
-          {userRooms ? (
+          {userRooms && userRooms.user && userRooms.user.length > 0 ? (
             userRooms?.user.map((userRomData) => (
               <>
                 <RoomDataCard
-                  key={userRomData?.id}
+                  key={userRomData.id}
                   data={userRomData}
                 ></RoomDataCard>
               </>

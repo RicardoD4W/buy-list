@@ -6,6 +6,7 @@ import { type ThemeProps } from "../types/props";
 
 function SearchEngine({ theme, products }: ThemeProps) {
   const setProducts = useBuyListStore((state) => state.setProducts);
+  // @ts-ignore
   const productsRef = useRef<ItemProduct[]>([...products]);
 
   const handleInputSearch = (e: React.FormEvent<HTMLInputElement>) => {

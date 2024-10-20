@@ -54,7 +54,7 @@ const LoginPage = () => {
             style: toastStyle.success,
           },
           error: {
-            render: ({ data }) => {
+            render: ({ data }: { data }) => {
               const errorMessage = data?.message || "Algo salió mal 😱";
               return `Error: ${errorMessage}`;
             },
@@ -117,7 +117,7 @@ const LoginPage = () => {
             style: toastStyle.success,
           },
           error: {
-            render: ({ data }) => {
+            render: ({ data }: { data }) => {
               const errorMessage = data?.message || "Error en el registro 😱";
               return `Error: ${errorMessage}`;
             },
