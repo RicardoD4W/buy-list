@@ -32,11 +32,11 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           </button>
         </header>
 
-        <main className="flex flex-col items-center justify-center ">
+        <main className="flex flex-col items-center justify-between h-[calc(100dvh-48px)] ">
           <nav>
             {roomUUID && (
               <MenuItem to={`/home/${roomUUID}`}>
-                <IconBuyList /> Lista de la Compra
+                <IconBuyList /> <span> Lista de la Compra </span>
               </MenuItem>
             )}
 
@@ -55,7 +55,7 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
             </MenuItem>
           </nav>
 
-          <nav className="relative -bottom-[350px]">
+          <nav>
             <MenuItem to={`/logout`}>
               <IconCloseSession className="w-9 h-9" /> Cerrar Sesión
             </MenuItem>

@@ -6,12 +6,32 @@ import DrawerNavigationMenu from "./DrawerNavigationMenu";
 import { useTheme } from "../hooks/useTheme";
 import IconMenuClose from "../icons/IconMenuClose";
 import { DrawerPosition } from "../types/store";
+import { useEffect, useState } from "react";
 
 const DrawerNavigation = () => {
   const drawerDirection = usePreferenceStore((state) => state.drawerDirection);
   const isDrawerOpen = usePreferenceStore((state) => state.isDrawerOpen);
   const toggleDrawer = usePreferenceStore((state) => state.toggleDrawer);
   const { themeState } = useTheme();
+
+  const [drawerSize, setDrawerSize] = useState("80%");
+
+  const updateDrawerSize = () => {
+    if (window.innerWidth <= 350) {
+      setDrawerSize("100%");
+    } else {
+      setDrawerSize("80%");
+    }
+  };
+
+  useEffect(() => {
+    updateDrawerSize();
+    window.addEventListener("resize", updateDrawerSize);
+
+    return () => {
+      window.removeEventListener("resize", updateDrawerSize);
+    };
+  }, []);
 
   let touchStartX = 0;
 
@@ -48,7 +68,7 @@ const DrawerNavigation = () => {
           open={isDrawerOpen}
           onClose={() => toggleDrawer(!isDrawerOpen)}
           direction={drawerDirection}
-          size={"100%"}
+          size={drawerSize}
           style={{
             backgroundColor: themeState.BackgroundColor,
           }}

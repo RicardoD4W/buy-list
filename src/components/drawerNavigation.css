@@ -1,0 +1,9 @@
+.drawer-content {
+  width: 80%;
+}
+
+@media (max-width: 320px) {
+  .drawer-content {
+    width: 100%;
+  }
+}
