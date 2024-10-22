@@ -55,149 +55,25 @@ function ConfigurationPage() {
           <section className="flex flex-col items-center justify-center">
             <h2 className="italic">Tema</h2>
             <div className="flex flex-wrap justify-center gap-5 my-3">
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Azul.BackgroundColor }}
-                >
-                  Azul
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Azul"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Azul"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Azul.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Cyan.BackgroundColor }}
-                >
-                  Cyan
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Cyan"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Cyan"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Cyan.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Naranja.BackgroundColor }}
-                >
-                  Naranja
-                </span>
-                <input
-                  onChange={handleChangeColorThemeChange}
-                  defaultChecked={colorTheme === "Naranja"}
-                  type="radio"
-                  value="Naranja"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Naranja.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Rosa.BackgroundColor }}
-                >
-                  Rosa
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Rosa"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Rosa"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Rosa.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Teal.BackgroundColor }}
-                >
-                  Teal
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Teal"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Teal"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Teal.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Verde.BackgroundColor }}
-                >
-                  Verde
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Verde"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Verde"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Verde.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Violeta.BackgroundColor }}
-                >
-                  Violeta
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Violeta"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Violeta"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Violeta.BackgroundColor }}
-                />
-              </label>
-
-              <label className="flex items-center justify-center gap-x-1">
-                <span
-                  className="font-semibold"
-                  style={{ color: paletteColor.Negro.BackgroundColor }}
-                >
-                  Modo oscuro
-                </span>
-                <input
-                  defaultChecked={colorTheme === "Negro"}
-                  onChange={handleChangeColorThemeChange}
-                  type="radio"
-                  value="Negro"
-                  name="tema"
-                  className="w-4 h-4"
-                  style={{ accentColor: paletteColor.Negro.BackgroundColor }}
-                />
-              </label>
+              {Object.entries(paletteColor).map(([nombre, tema]) => (
+                <label className="flex items-center justify-center gap-x-1">
+                  <span
+                    className="font-semibold"
+                    style={{ color: tema.BackgroundColor }}
+                  >
+                    {nombre}
+                  </span>
+                  <input
+                    defaultChecked={colorTheme === nombre}
+                    onChange={handleChangeColorThemeChange}
+                    type="radio"
+                    value={nombre}
+                    name="tema"
+                    className="w-4 h-4"
+                    style={{ accentColor: tema.BackgroundColor }}
+                  />
+                </label>
+              ))}
             </div>
           </section>
           <label className="flex items-center justify-center m-2 gap-x-2">

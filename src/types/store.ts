@@ -18,7 +18,7 @@ export interface AvalibeColorsTheme {
   Rosa: ColorTheme;
   Violeta: ColorTheme;
   Naranja: ColorTheme;
-  Negro: ColorTheme;
+  Halloween: ColorTheme;
 }
 
 export const enum DrawerPosition {

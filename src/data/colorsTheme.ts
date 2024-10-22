@@ -64,11 +64,11 @@ export const paletteColor: AvalibeColorsTheme = {
     SecondaryIconColor: "#c47906",
     CardColor: "#f3ebff",
   },
-  Negro: {
+  Halloween: {
     HeaderColor: "#1B1A16",
     BackgroundColor: "#252525",
     TitleColor: "#AFAFAF",
-    ContentColor: "#F0A502",
+    ContentColor: "#ed7802",
     PrimaryIconColor: "#6FC5B8",
     SecondaryIconColor: "#BF3030",
     CardColor: "#3B3B3B",
