@@ -9,6 +9,7 @@ import { useUserStore } from "../store/userStore";
 import { MagnifyingGlass } from "react-loader-spinner";
 import Pusher from "pusher-js";
 import { ToastContainer } from "react-toastify";
+import SearchEngineSkeleton from "../components/SearchEngineSkeleton";
 
 const PUSHER_KEY = import.meta.env.VITE_PUSHER_KEY;
 
@@ -77,7 +78,15 @@ function BuyListPage() {
               color: themeState.ContentColor,
             }}
           >
-            <SearchEngine theme={themeState} products={products} />
+            {!isLoading ? (
+              <>
+                <SearchEngine theme={themeState} products={products} />
+              </>
+            ) : (
+              <>
+                <SearchEngineSkeleton theme={themeState} />
+              </>
+            )}
 
             {isLoading && (
               <div className="flex items-center justify-center">

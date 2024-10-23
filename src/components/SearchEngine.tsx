@@ -6,7 +6,6 @@ import { type ThemeProps } from "../types/props";
 
 function SearchEngine({ theme, products }: ThemeProps) {
   const setProducts = useBuyListStore((state) => state.setProducts);
-  // @ts-ignore
   const productsRef = useRef<ItemProduct[]>([...products]);
 
   const handleInputSearch = (e: React.FormEvent<HTMLInputElement>) => {
@@ -35,7 +34,7 @@ function SearchEngine({ theme, products }: ThemeProps) {
       <search className="flex justify-evenly">
         <label
           style={{ color: theme.TitleColor, borderColor: theme.ContentColor }}
-          className="flex items-center justify-center px-3 pb-1 border-b-2"
+          className="flex items-center justify-center px-3 pb-2 border-b-2"
         >
           <IconSearch />
           <input
