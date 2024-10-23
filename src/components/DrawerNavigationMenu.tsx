@@ -22,7 +22,7 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           style={{ backgroundColor: theme.HeaderColor }}
         >
           <span className="max-w-[230px] text-xl text-ellipsis overflow-hidden whitespace-nowrap">
-            {roomName || ""}
+            {roomName || "Lista de la compra"}
           </span>
           <button
             onClick={() => toggleDrawer(false)}
@@ -32,7 +32,7 @@ function DrawerNavigationMenu({ theme }: DrawerNavigationMenuProps) {
           </button>
         </header>
 
-        <main className="flex flex-col items-center justify-between h-[calc(100dvh-48px)] ">
+        <main className="flex flex-col items-center justify-between h-[calc(100dvh-48px)] pb-5">
           <nav>
             {roomUUID && (
               <MenuItem to={`/home/${roomUUID}`}>
