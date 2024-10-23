@@ -1,4 +1,5 @@
 import { emoji } from "../data/emoji";
+import React from "react";
 
 export const starsCount = (numberOfStars: number): string => {
   if (numberOfStars > 5 || numberOfStars < 0)
@@ -51,4 +52,21 @@ export const formatDate = (isoDate: string): string => {
 
 export const changeBackgroundColor = (color) => {
   document.body.style.backgroundColor = color;
+};
+
+export const withSeparators = (
+  configComponent: JSX.Element[],
+  configSeparator: React.ElementType
+) => {
+  return configComponent.flatMap((component, index) => {
+    const componentKey = `component-${index}`;
+    const separatorKey = `separator-${index}`;
+
+    return index < configComponent.length - 1
+      ? [
+          React.cloneElement(component, { key: componentKey }),
+          React.createElement(configSeparator, { key: separatorKey }),
+        ]
+      : [React.cloneElement(component, { key: componentKey })];
+  });
 };
