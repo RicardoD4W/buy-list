@@ -43,7 +43,13 @@ function ContentProductCard({
     notifications
       ? toast
           .promise(
-            deleteOneProductFromOwnRoom(access_token, productId),
+            deleteOneProductFromOwnRoom(access_token, productId).then((res) => {
+              const { error } = res;
+
+              if (error) {
+                throw new Error(error);
+              }
+            }),
             {
               pending: {
                 render: "Eliminando producto...",
@@ -56,7 +62,10 @@ function ContentProductCard({
                 style: toastStyle.success,
               },
               error: {
-                render: "Algo salió mal 😱",
+                render: ({ data }: { data }) => {
+                  const errorMessage = data?.message || "Algo salió mal 😱";
+                  return `Error: ${errorMessage}`;
+                },
                 className: "error-toast",
                 style: toastStyle.error,
               },

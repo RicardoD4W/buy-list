@@ -71,7 +71,13 @@ function AddProductPage() {
               roomUUID,
               userId,
               productToAdd
-            ),
+            ).then((res) => {
+              const { error } = res;
+
+              if (error) {
+                throw new Error(error);
+              }
+            }),
             {
               pending: {
                 render: "Creando producto...",
@@ -84,7 +90,10 @@ function AddProductPage() {
                 style: toastStyle.success,
               },
               error: {
-                render: "Algo salió mal 😱",
+                render: ({ data }: { data }) => {
+                  const errorMessage = data?.message || "Algo salió mal 😱";
+                  return `Error: ${errorMessage}`;
+                },
                 className: "error-toast",
                 style: toastStyle.error,
               },
