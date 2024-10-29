@@ -161,7 +161,7 @@ function AddProductPage() {
             </label>
 
             <label>
-              Descripcción:
+              Descripción:
               <textarea
                 name="descripccion"
                 className="p-1 text-black rounded-md resize-none"
