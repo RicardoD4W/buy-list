@@ -49,6 +49,8 @@ function AddProductPage() {
       return setIsok({ cantidad: isOk.cantidad, producto: false });
     if (cantidad <= 0)
       return setIsok({ producto: isOk.cantidad, cantidad: false });
+    if (cantidad > 100)
+      return setIsok({ producto: isOk.cantidad, cantidad: false });
 
     setIsok({ producto: true, cantidad: true });
 
@@ -190,7 +192,7 @@ function AddProductPage() {
               />
               {!isOk.cantidad && (
                 <small className="bottom-0 left-0 my-1 text-red-500">
-                  Este campo es requerido y mayor a 0
+                  Este campo es requerido y debe ser mayor a 0 a y menor a 100
                 </small>
               )}
             </label>
