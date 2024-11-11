@@ -24,13 +24,13 @@ function ConfigurationPage() {
   return (
     <>
       <article
-        className="flex justify-center pt-32 transition-colors duration-300 ease-out "
+        className="flex items-center justify-center h-screen transition-colors duration-300 ease-out"
         style={{
           backgroundColor: themeState.BackgroundColor,
         }}
       >
         <div
-          className="flex flex-col items-center justify-around w-11/12 p-4 transition-colors duration-300 ease-out rounded gap-y-6 h-[60%]"
+          className="flex flex-col items-center justify-around w-11/12 p-4 transition-colors duration-300 ease-out rounded gap-y-6"
           style={{
             backgroundColor: themeState.CardColor,
             color: themeState.ContentColor,

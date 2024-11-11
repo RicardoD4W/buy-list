@@ -22,7 +22,7 @@ function SelectRoomPage() {
         style={{
           color: themeState.ContentColor,
         }}
-        className="flex flex-col items-center justify-center pt-12"
+        className="flex flex-col items-center justify-center pt-32 pb-16"
       >
         <div className="flex flex-col items-center justify-center gap-8 ">
           {userRooms && userRooms.user && userRooms.user.length > 0 ? (

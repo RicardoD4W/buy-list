@@ -126,7 +126,7 @@ function AddProductPage() {
     <>
       <ToastContainer />
       <section
-        className="flex items-center justify-center h-[70dvh]"
+        className="flex items-center justify-center h-screen"
         style={{
           color: themeState.ContentColor,
         }}
