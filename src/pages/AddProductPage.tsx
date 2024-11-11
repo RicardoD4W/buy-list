@@ -72,10 +72,11 @@ function AddProductPage() {
               userId,
               productToAdd
             ).then((res) => {
-              const { error } = res;
-
-              if (error) {
-                throw new Error(error);
+              const { errors } = res;
+              if (errors) {
+                throw new Error(
+                  Object.values(errors).join().replaceAll(",", "\n")
+                );
               }
             }),
             {
@@ -100,7 +101,7 @@ function AddProductPage() {
             },
             {
               position: "top-center",
-              autoClose: 1000,
+              autoClose: 1500,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
