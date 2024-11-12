@@ -69,11 +69,11 @@ function BuyListPage() {
           color: themeState.ContentColor,
           backgroundColor: themeState.BackgroundColor,
         }}
-        className="h-full transition-colors"
+        className="h-full py-16 transition-colors"
       >
         <div className="flex flex-col items-center w-full">
           <main
-            className="transition-colors"
+            className="transition-colors "
             style={{
               color: themeState.ContentColor,
             }}
