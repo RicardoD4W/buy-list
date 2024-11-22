@@ -3,9 +3,11 @@ import IconSearch from "../icons/IconSearch";
 import { useBuyListStore } from "../store/buyListStore";
 import { ItemProduct } from "../types/api";
 import { type ThemeProps } from "../types/props";
+import { usePreferenceStore } from "../store/preferencesStore";
 
 function SearchEngine({ theme, products }: ThemeProps) {
   const setProducts = useBuyListStore((state) => state.setProducts);
+  const isDrawerOpen = usePreferenceStore((state) => state.isDrawerOpen);
 
   const productsRef = useRef<ItemProduct[]>([...products]);
 
@@ -41,7 +43,9 @@ function SearchEngine({ theme, products }: ThemeProps) {
           <input
             name="search"
             onChange={handleInputSearch}
-            className="relative ml-1 bg-transparent outline-none active:ring-0 -z-10"
+            className={`relative ml-1 bg-transparent outline-none active:ring-0 ${
+              isDrawerOpen && "-z-10"
+            }`}
             spellCheck
           />
         </label>
