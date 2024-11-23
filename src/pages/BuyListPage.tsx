@@ -10,11 +10,13 @@ import { MagnifyingGlass } from "react-loader-spinner";
 import Pusher from "pusher-js";
 import { ToastContainer } from "react-toastify";
 import SearchEngineSkeleton from "../components/SearchEngineSkeleton";
+import { useGetNotificationPermission } from "../hooks/useGetNotificationPermission";
 
 const PUSHER_KEY = import.meta.env.VITE_PUSHER_KEY;
 
 function BuyListPage() {
   useRedirect();
+  useGetNotificationPermission();
 
   const { themeState } = useTheme();
   const products = useBuyListStore((state) => state.products);
@@ -53,7 +55,6 @@ function BuyListPage() {
       "App\\Events\\ProductEvent",
       async () => await fetchProductsData()
     );
-    channel.bind("ProductEvent", async () => await fetchProductsData());
 
     return () => {
       channel.unbind_all();
