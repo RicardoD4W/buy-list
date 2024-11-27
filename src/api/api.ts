@@ -181,3 +181,24 @@ export const getAllRoomsFromAnUser = async (Bearer: string, userId: number) => {
 
   return response;
 };
+
+export const sendSubscriptionToServer = async (
+  subscription,
+  Bearer: string
+) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${Bearer}`);
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("X-Requested-With", "XMLHttpRequest");
+
+  const request = await fetch(`${base_url}/save-subscription`, {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify(subscription),
+    redirect: "follow",
+  });
+
+  const response = await request.json();
+
+  return response;
+};

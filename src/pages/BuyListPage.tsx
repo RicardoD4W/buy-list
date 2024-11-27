@@ -11,12 +11,12 @@ import Pusher from "pusher-js";
 import { ToastContainer } from "react-toastify";
 import SearchEngineSkeleton from "../components/SearchEngineSkeleton";
 import { useGetNotificationPermission } from "../hooks/useGetNotificationPermission";
+import { subscriptionSW } from "../helpers/subscriptionSW";
 
 const PUSHER_KEY = import.meta.env.VITE_PUSHER_KEY;
 
 function BuyListPage() {
   useRedirect();
-  useGetNotificationPermission();
 
   const { themeState } = useTheme();
   const products = useBuyListStore((state) => state.products);
@@ -25,6 +25,13 @@ function BuyListPage() {
   const user = useUserStore((state) => state.user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+
+  const { permissionGranted } = useGetNotificationPermission();
+  useEffect(() => {
+    if (permissionGranted) {
+      subscriptionSW(user.access_token);
+    }
+  }, [permissionGranted, user.access_token]);
 
   const fetchProductsData = async () => {
     if (roomUUID === undefined) return;
