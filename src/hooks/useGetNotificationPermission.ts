@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const useGetNotificationPermission = () => {
-  const [permissionGranted, setPermissionGranted] = useState(null);
-
   useEffect(() => {
-    if (Notification.permission === "granted") {
-      setPermissionGranted(true);
-      return;
-    }
+    if (Notification.permission === "granted") return;
 
-    Notification.requestPermission().then((permission) => {
-      setPermissionGranted(permission === "granted");
+    Notification.requestPermission().then(async (permission) => {
+      if (permission === "granted") {
+        navigator.serviceWorker.ready.then((registration) => {});
+      }
     });
   }, []);
-
-  return { permissionGranted };
 };

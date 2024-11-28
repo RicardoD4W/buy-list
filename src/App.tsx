@@ -11,8 +11,6 @@ import AddProductPage from "./pages/AddProductPage";
 import { useEffect } from "react";
 import { changeBackgroundColor } from "./helpers/functions";
 import { useUserStore } from "./store/userStore";
-import { useGetNotificationPermission } from "./hooks/useGetNotificationPermission";
-import { subscriptionSW } from "./helpers/subscriptionSW";
 
 function App() {
   const { themeState } = useTheme();
@@ -21,16 +19,6 @@ function App() {
   useEffect(() => {
     changeBackgroundColor(themeState.BackgroundColor);
   }, [themeState]);
-
-  const { access_token } = useUserStore((state) => state.user);
-  const { permissionGranted } = useGetNotificationPermission();
-  useEffect(() => {
-    if (!access_token) return;
-
-    if (permissionGranted) {
-      subscriptionSW(access_token);
-    }
-  }, [permissionGranted, access_token]);
 
   return (
     <div
