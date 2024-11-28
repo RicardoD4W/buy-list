@@ -6,7 +6,9 @@ export const useGetNotificationPermission = () => {
 
     Notification.requestPermission().then(async (permission) => {
       if (permission === "granted") {
-        navigator.serviceWorker.ready.then((registration) => {});
+        navigator.serviceWorker.ready.then((registration) => {
+          console.log(registration);
+        });
       }
     });
   }, []);
