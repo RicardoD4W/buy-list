@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { type AvalibeColorsTheme, DrawerPosition } from "../types/store";
-import { devtools, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 interface PreferenceState {
   colorTheme: keyof AvalibeColorsTheme;
@@ -13,28 +13,32 @@ interface PreferenceState {
   setAutomaticEmojis: (automaticEmojis: boolean) => void;
   notifications: boolean;
   setNotifications: (notifications: boolean) => void;
+  scrollBeforeAction?: number;
+  setScrollBeforeAction?: (scrollPosition: number) => void;
 }
 
 export const usePreferenceStore = create<PreferenceState>()(
-  devtools(
-    persist(
-      (set) => ({
-        colorTheme: "Azul",
-        setColorTheme: (colorTheme) => set({ colorTheme }),
+  persist(
+    (set) => ({
+      colorTheme: "Azul",
+      setColorTheme: (colorTheme) => set({ colorTheme }),
 
-        drawerDirection: DrawerPosition.LEFT,
-        setDrawerDirection: (drawerDirection) => set({ drawerDirection }),
+      drawerDirection: DrawerPosition.LEFT,
+      setDrawerDirection: (drawerDirection) => set({ drawerDirection }),
 
-        isDrawerOpen: false,
-        toggleDrawer: (isDrawerOpen) => set({ isDrawerOpen }),
+      isDrawerOpen: false,
+      toggleDrawer: (isDrawerOpen) => set({ isDrawerOpen }),
 
-        automaticEmojis: true,
-        setAutomaticEmojis: (automaticEmojis) => set({ automaticEmojis }),
+      automaticEmojis: true,
+      setAutomaticEmojis: (automaticEmojis) => set({ automaticEmojis }),
 
-        notifications: true,
-        setNotifications: (notifications) => set({ notifications }),
-      }),
-      { name: "user-config" }
-    )
+      notifications: true,
+      setNotifications: (notifications) => set({ notifications }),
+
+      scrollBeforeAction: undefined,
+      setScrollBeforeAction: (scrollBeforeAction) =>
+        set(() => ({ scrollBeforeAction })),
+    }),
+    { name: "user-config" }
   )
 );

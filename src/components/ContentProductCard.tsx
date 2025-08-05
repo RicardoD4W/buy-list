@@ -18,11 +18,16 @@ function ContentProductCard({
   toastStyle,
 }: ContentProductCardProps) {
   const { themeState } = useTheme();
+
   const { roomUUID } = useUserStore((state) => state.actualRoom);
+  const { access_token } = useUserStore((state) => state.user);
+
   const automaticEmojis = usePreferenceStore((state) => state.automaticEmojis);
   const notifications = usePreferenceStore((state) => state.notifications);
+  const setScrollBeforeAction = usePreferenceStore(
+    (state) => state.setScrollBeforeAction
+  );
 
-  const { access_token } = useUserStore((state) => state.user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
@@ -39,6 +44,7 @@ function ContentProductCard({
 
   const handleClickDeleteProduct = (productId: number) => {
     setIsLoading(true);
+    setScrollBeforeAction(window.scrollY);
 
     notifications
       ? toast

@@ -1,24 +1,19 @@
 import { useEffect } from "react";
 import { type ListProductCardProps } from "../types/props";
 import ProductCard from "./ProductCard";
+import { usePreferenceStore } from "../store/preferencesStore";
 
 function ListProductCard({ products }: ListProductCardProps) {
+  const scrollBeforeAction = usePreferenceStore(
+    (state) => state.scrollBeforeAction
+  );
+
   useEffect(() => {
-    const scrollPosition = sessionStorage.getItem("scrollPosition");
-    if (scrollPosition) {
-      window.scrollTo(0, parseInt(scrollPosition, 10));
+    if (scrollBeforeAction) {
+      window.scrollTo(0, scrollBeforeAction);
     }
+  }, [scrollBeforeAction]);
 
-    const handleScroll = () => {
-      sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <>
       <p className="p-1 text-2xl font-medium text-center">
