@@ -23,11 +23,15 @@ function ContentEditableProductCard({
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { themeState } = useTheme();
+
   const { roomUUID } = useUserStore((state) => state.actualRoom);
   const { access_token } = useUserStore((state) => state.user);
-  const notifications = usePreferenceStore((state) => state.notifications);
-
   const { id: userId } = useUserStore((state) => state.user);
+
+  const notifications = usePreferenceStore((state) => state.notifications);
+  const setScrollBeforeAction = usePreferenceStore(
+    (state) => state.setScrollBeforeAction
+  );
 
   const {
     uds: cantidad,
@@ -44,6 +48,8 @@ function ContentEditableProductCard({
     e.preventDefault();
 
     if (!roomUUID) return;
+
+    setScrollBeforeAction(window.scrollY);
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);

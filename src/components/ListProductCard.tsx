@@ -7,12 +7,16 @@ function ListProductCard({ products }: ListProductCardProps) {
   const scrollBeforeAction = usePreferenceStore(
     (state) => state.scrollBeforeAction
   );
+  const setScrollBeforeAction = usePreferenceStore(
+    (state) => state.setScrollBeforeAction
+  );
 
   useEffect(() => {
-    if (scrollBeforeAction) {
-      window.scrollTo(0, scrollBeforeAction);
-    }
-  }, [scrollBeforeAction]);
+    if (!scrollBeforeAction) return;
+
+    window.scrollTo(0, scrollBeforeAction);
+    setScrollBeforeAction?.(undefined);
+  }, []);
 
   return (
     <>
